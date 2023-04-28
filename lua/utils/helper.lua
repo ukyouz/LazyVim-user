@@ -11,4 +11,15 @@ function helper.is_windows ()
     return path_sep == "\\"
 end
 
+function helper.augroup (group_name, autocmds)
+    local group = vim.api.nvim_create_augroup("numbertoggle", {
+        clear = true,
+    })
+    for _, autocmd in pairs(autocmds) do
+        local opts = autocmd["opts"]
+        opts["group"] = group
+        vim.api.nvim_create_autocmd(autocmd["events"], opts)
+    end
+end
+
 return helper

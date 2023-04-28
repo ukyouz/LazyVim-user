@@ -1,7 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-local util = require "utils.helper"
+local H = require "utils.helper"
 
 local function map(mode, lhs, rhs, opts)
     local keys = require("lazy.core.handler").handlers.keys
@@ -32,7 +32,7 @@ map("n", "<C-;>", "<cmd>:noh<cr>", {
 })
 
 -- Session Manager
-if util.has_plugin "neovim-session-manager" then
+if H.has_plugin "neovim-session-manager" then
     map("n", "<leader>sl", "<cmd>SessionManager! load_last_session<cr>", {
         desc = "Load last session",
     })
@@ -53,7 +53,7 @@ if util.has_plugin "neovim-session-manager" then
 end
 
 -- Smart Splits
-if util.has_plugin "smart-splits.nvim" then
+if H.has_plugin "smart-splits.nvim" then
     map("n", "<C-h>", "", {
         callback = function()
             require("smart-splits").move_cursor_left()
@@ -78,30 +78,57 @@ if util.has_plugin "smart-splits.nvim" then
         end,
         desc = "Move to right split",
     })
-    map("n", "<C-Up>", "", {
-        callback = function()
-            require("smart-splits").resize_up()
-        end,
-        desc = "Resize split up",
-    })
-    map("n", "<C-Down>", "", {
-        callback = function()
-            require("smart-splits").resize_down()
-        end,
-        desc = "Resize split down",
-    })
-    map("n", "<C-Left>", "", {
-        callback = function()
-            require("smart-splits").resize_left()
-        end,
-        desc = "Resize split left",
-    })
-    map("n", "<C-Right>", "", {
-        callback = function()
-            require("smart-splits").resize_right()
-        end,
-        desc = "Resize split right",
-    })
+    if H.is_windows() then
+        map("n", "<C-Up>", "", {
+            callback = function()
+                require("smart-splits").resize_up()
+            end,
+            desc = "Resize split up",
+        })
+        map("n", "<C-Down>", "", {
+            callback = function()
+                require("smart-splits").resize_down()
+            end,
+            desc = "Resize split down",
+        })
+        map("n", "<C-Left>", "", {
+            callback = function()
+                require("smart-splits").resize_left()
+            end,
+            desc = "Resize split left",
+        })
+        map("n", "<C-Right>", "", {
+            callback = function()
+                require("smart-splits").resize_right()
+            end,
+            desc = "Resize split right",
+        })
+    else
+        map("n", "<D-Up>", "", {
+            callback = function()
+                require("smart-splits").resize_up()
+            end,
+            desc = "Resize split up",
+        })
+        map("n", "<D-Down>", "", {
+            callback = function()
+                require("smart-splits").resize_down()
+            end,
+            desc = "Resize split down",
+        })
+        map("n", "<D-Left>", "", {
+            callback = function()
+                require("smart-splits").resize_left()
+            end,
+            desc = "Resize split left",
+        })
+        map("n", "<D-Right>", "", {
+            callback = function()
+                require("smart-splits").resize_right()
+            end,
+            desc = "Resize split right",
+        })
+    end
 else
     map("n", "<C-h>", "<C-w>h", {
         desc = "Move to left split",
@@ -114,17 +141,5 @@ else
     })
     map("n", "<C-l>", "<C-w>l", {
         desc = "Move to right split",
-    })
-    map("n", "<C-Up>", "<cmd>resize -2<CR>", {
-        desc = "Resize split up",
-    })
-    map("n", "<C-Down>", "<cmd>resize +2<CR>", {
-        desc = "Resize split down",
-    })
-    map("n", "<C-Left>", "<cmd>vertical resize -2<CR>", {
-        desc = "Resize split left",
-    })
-    map("n", "<C-Right>", "<cmd>vertical resize +2<CR>", {
-        desc = "Resize split right",
     })
 end

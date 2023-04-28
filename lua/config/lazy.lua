@@ -1,3 +1,5 @@
+local H = require("utils.helper")
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -14,7 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to set `mapleader` before lazy so your mappings are correct
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.python3_host_prog = vim.fn.expand("$LOCALAPPDATA/Programs/Python/Python310/python.exe")
+if H.is_windows() then
+    vim.g.python3_host_prog = vim.fn.expand("$LOCALAPPDATA/Programs/Python/Python310/python.exe")
+end
 
 -- require("lazy").setup({
 --   spec = {
