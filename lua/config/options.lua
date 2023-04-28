@@ -33,6 +33,7 @@ vim.opt.softtabstop=4
 vim.opt.splitbelow=true
 vim.opt.splitright=true
 vim.opt.tabstop=4
+vim.opt.termguicolors = vim.api.nvim_eval("has('gui_vimr')") == 1 or H.is_windows()
 vim.opt.title=true
 vim.opt.titlestring = "%{getcwd()} - NVIM"
 vim.opt.updatetime=200
