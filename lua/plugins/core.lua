@@ -43,6 +43,18 @@ return {
                 group = vim.g.icons_enabled and "" or "+",
                 separator = "",
             },
+            triggers_nowait = {
+                -- marks
+                "`",
+                "'",
+                "g`",
+                "g'",
+                -- registers
+                -- '"',
+                -- "<c-r>",
+                -- spelling
+                "z=",
+            },
             --   disable = { filetypes = { "TelescopePrompt" } },
         },
         config = function(_, opts)
@@ -76,6 +88,12 @@ return {
                 command = "ContextDisableWindow",
             })
         end,
+    },
+    {
+        "NvChad/nvim-colorizer.lua",
+        event = "BufReadPost",
+        cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
+        opts = { user_default_options = { names = false } },
     },
     {
         "machakann/vim-highlightedyank",
