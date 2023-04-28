@@ -7,6 +7,7 @@ return {
         ft = {
             "c",
             "cpp",
+            "php",
             "python",
         },
         init = function()
