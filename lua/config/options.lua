@@ -28,6 +28,7 @@ vim.opt.number=true
 vim.opt.scrolloff=0
 vim.opt.shiftwidth=4
 vim.opt.shortmess="filnxtToOFat"  -- += at
+vim.opt.showcmd=false  -- don't show keystroke in statusline
 vim.opt.signcolumn="yes"
 vim.opt.softtabstop=4
 vim.opt.splitbelow=true

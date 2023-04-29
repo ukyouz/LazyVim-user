@@ -54,12 +54,6 @@ end
 
 -- Smart Splits
 if H.has_plugin "smart-splits.nvim" then
-    map("n", "<C-h>", "", {
-        callback = function()
-            require("smart-splits").move_cursor_left()
-        end,
-        desc = "Move to left split",
-    })
     map("n", "<C-j>", "", {
         callback = function()
             require("smart-splits").move_cursor_down()
@@ -71,12 +65,6 @@ if H.has_plugin "smart-splits.nvim" then
             require("smart-splits").move_cursor_up()
         end,
         desc = "Move to above split",
-    })
-    map("n", "<C-l>", "", {
-        callback = function()
-            require("smart-splits").move_cursor_right()
-        end,
-        desc = "Move to right split",
     })
     if H.is_windows() then
         map("n", "<C-Up>", "", {
@@ -129,17 +117,17 @@ if H.has_plugin "smart-splits.nvim" then
             desc = "Resize split right",
         })
     end
-else
-    map("n", "<C-h>", "<C-w>h", {
-        desc = "Move to left split",
-    })
     map("n", "<C-j>", "<C-w>j", {
         desc = "Move to below split",
     })
     map("n", "<C-k>", "<C-w>k", {
         desc = "Move to above split",
     })
-    map("n", "<C-l>", "<C-w>l", {
-        desc = "Move to right split",
-    })
 end
+
+map("n", "<C-h>", "<C-w>h", {
+    desc = "Move to left split",
+})
+map("n", "<C-l>", "<C-w>l", {
+    desc = "Move to right split",
+})
