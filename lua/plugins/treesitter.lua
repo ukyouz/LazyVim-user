@@ -98,4 +98,10 @@ return {
             })
         end,
     },
+    {
+        "lewis6991/spellsitter.nvim",
+        enabled = function()
+            return vim.opt.spell:get()
+        end,
+    },
 }

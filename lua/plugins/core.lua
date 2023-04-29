@@ -180,6 +180,32 @@ return {
         event = "BufReadPost",
     }, -- add surround movement
     {
+        "numToStr/Comment.nvim",
+        keys = {
+            {
+                "gc",
+                mode = {
+                    "n",
+                    "v",
+                },
+            },
+            {
+                "gb",
+                mode = {
+                    "n",
+                    "v",
+                },
+            },
+        },
+        opts = function()
+            local commentstring_avail, commentstring = pcall(require,
+                "ts_context_commentstring.integrations.comment_nvim")
+            return commentstring_avail and commentstring and {
+                pre_hook = commentstring.create_pre_hook(),
+            } or {}
+        end,
+    }, -- better comment action
+    {
         "tpope/vim-repeat",
         event = "BufReadPost",
     }, -- better . repeat action
@@ -201,5 +227,57 @@ return {
         config = function()
             vim.g.VM_theme = "codedark"
         end,
+    },
+    {
+        "bkad/CamelCaseMotion",
+        event = "VeryLazy",
+        init = function()
+            vim.g.camelcasemotion_key = "\\"
+        end,
+    },
+    {
+        "stevearc/aerial.nvim",
+        -- event = "BufReadPost",
+        keys = {
+            {
+                "<leader>ls",
+                "",
+                callback = function()
+                    require("aerial").toggle()
+                end,
+                desc = "List Symbols outline",
+                -- maps.n["<leader>lS"] = { , desc = "Symbols outline" }
+            },
+        },
+        opts = {
+            attach_mode = "global",
+            backends = {
+                "lsp",
+                "treesitter",
+                "markdown",
+                "man",
+            },
+            layout = {
+                min_width = 28,
+            },
+            show_guides = true,
+            -- filter_kind = false,
+            guides = {
+                mid_item = "├ ",
+                last_item = "└ ",
+                nested_top = "│ ",
+                whitespace = "  ",
+            },
+            keymaps = {
+                ["[y"] = "actions.prev",
+                ["]y"] = "actions.next",
+                ["[Y"] = "actions.prev_up",
+                ["]Y"] = "actions.next_up",
+                ["{"] = false,
+                ["}"] = false,
+                ["[["] = false,
+                ["]]"] = false,
+            },
+        },
     },
 }

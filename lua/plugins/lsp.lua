@@ -78,6 +78,7 @@ return {
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             -- "hrsh7th/cmp-path",
         },
         event = "VimEnter",
@@ -91,6 +92,14 @@ return {
             --     completion = cmp.config.window.bordered(),
             --     documentation = cmp.config.window.bordered(),
             -- }
+            local lspkind = require("lspkind")
+            opts.formatting = {
+                format = lspkind.cmp_format({
+                    mode = "symbol", -- show only symbol annotations
+                    maxwidth = 33, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                }),
+            }
             opts.mapping = {
                 ["<C-p>"] = cmp.mapping.select_prev_item(),
                 ["<C-n>"] = cmp.mapping.select_next_item(),
@@ -102,6 +111,9 @@ return {
                 }),
             }
             opts.sources = cmp.config.sources({
+                {
+                    name = "nvim_lsp_signature_help",
+                },
                 {
                     name = "nvim_lsp",
                 },
@@ -115,5 +127,9 @@ return {
             })
             return opts
         end,
+    },
+    {
+        "onsails/lspkind.nvim",
+        event = "LspAttach",
     },
 }

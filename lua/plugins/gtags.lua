@@ -25,14 +25,17 @@ return {
     },
     {
         "liuchengxu/vista.vim",
+        enabled = false,
         keys = {
             {
-                "<leader>ls", "<cmd>:Vista!!<cr>",
-                desc = "List Symbols outline", noremap = false,
+                "<leader>ls",
+                "<cmd>:Vista!!<cr>",
+                desc = "List Symbols outline",
+                noremap = false,
             },
         },
-        init = function()
+        config = function()
             vim.cmd("let g:vista#renderer#enable_icon = 1")
-        end
+        end,
     },
 }
