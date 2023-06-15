@@ -92,8 +92,17 @@ return {
     {
         "NvChad/nvim-colorizer.lua",
         event = "BufReadPost",
-        cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
-        opts = { user_default_options = { names = false } },
+        cmd = {
+            "ColorizerToggle",
+            "ColorizerAttachToBuffer",
+            "ColorizerDetachFromBuffer",
+            "ColorizerReloadAllBuffers",
+        },
+        opts = {
+            user_default_options = {
+                names = false,
+            },
+        },
     },
     {
         "machakann/vim-highlightedyank",
