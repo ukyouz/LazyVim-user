@@ -31,6 +31,22 @@ map("n", "<C-;>", "<cmd>:noh<cr>", {
     desc = "Clear highlight",
 })
 
+map("n", "<C-s>", "<cmd>:w<cr>", {
+    desc = "Copy to system clipboard",
+})
+
+map("i", "<C-s>", "<esc>:w<cr>a", {
+    desc = "Copy to system clipboard",
+})
+
+map("v", "<C-c>", "\"*y", {
+    desc = "Copy to system clipboard",
+})
+
+map("i", "<C-v>", "<esc>\"*pa", {
+    desc = "Paste from system clipboard",
+})
+
 -- Session Manager
 if H.has_plugin "neovim-session-manager" then
     map("n", "<leader>sl", "<cmd>SessionManager! load_last_session<cr>", {
@@ -67,25 +83,25 @@ if H.has_plugin "smart-splits.nvim" then
         desc = "Move to above split",
     })
     if H.is_windows() then
-        map("n", "<C-Up>", "", {
+        map("n", "<A-Up>", "", {
             callback = function()
                 require("smart-splits").resize_up()
             end,
             desc = "Resize split up",
         })
-        map("n", "<C-Down>", "", {
+        map("n", "<A-Down>", "", {
             callback = function()
                 require("smart-splits").resize_down()
             end,
             desc = "Resize split down",
         })
-        map("n", "<C-Left>", "", {
+        map("n", "<A-Left>", "", {
             callback = function()
                 require("smart-splits").resize_left()
             end,
             desc = "Resize split left",
         })
-        map("n", "<C-Right>", "", {
+        map("n", "<A-Right>", "", {
             callback = function()
                 require("smart-splits").resize_right()
             end,

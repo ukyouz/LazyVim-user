@@ -12,7 +12,7 @@ function helper.is_windows ()
 end
 
 function helper.augroup (group_name, autocmds)
-    local group = vim.api.nvim_create_augroup("numbertoggle", {
+    local group = vim.api.nvim_create_augroup(group_name, {
         clear = true,
     })
     for _, autocmd in pairs(autocmds) do

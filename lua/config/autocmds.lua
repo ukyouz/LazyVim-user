@@ -22,3 +22,14 @@ H.augroup("numbertoggle", {
         },
     },
 })
+
+H.augroup("autoreload", {
+    {
+        events = {"BufEnter", "CursorHold", "CursorHoldI", "FocusGained"},
+        opts = {
+            pattern = {"*"},
+            desc = "Ensure to load the latest file revision",
+            command = "if mode() != 'c' | checktime | endif",
+        },
+    },
+})
