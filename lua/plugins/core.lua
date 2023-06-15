@@ -105,6 +105,9 @@ return {
         },
     },
     {
+        "github/copilot.vim",
+    },
+    {
         "machakann/vim-highlightedyank",
         event = "BufReadPost",
         init = function()
