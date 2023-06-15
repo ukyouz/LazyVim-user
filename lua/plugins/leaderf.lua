@@ -13,7 +13,7 @@ return {
             end,
         },
         {
-            "<leader>ff", "<cmd>:LeaderfFile<cr>",
+            "<leader>p", "<cmd>:LeaderfFile<cr>",
             desc = "Find Files", noremap = false,
         },
         {
