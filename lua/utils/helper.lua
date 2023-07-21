@@ -12,6 +12,14 @@ function helper.is_windows ()
 end
 
 function helper.augroup (group_name, autocmds)
+    -- autocmds = list of {
+    --     events = {},
+    --     opts = {
+    --         pattern = {"*"},
+    --         desc = "",
+    --         command = "",
+    --     },
+    -- }
     local group = vim.api.nvim_create_augroup(group_name, {
         clear = true,
     })
