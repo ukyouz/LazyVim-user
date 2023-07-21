@@ -226,6 +226,10 @@ return {
         event = "BufReadPost",
     }, -- add common `[`, `]` movement
     {
+        "kshenoy/vim-signature",
+        event = "VeryLazy",
+    },
+    {
         "wellle/targets.vim",
         event = "BufReadPost",
     }, -- add more textobject
