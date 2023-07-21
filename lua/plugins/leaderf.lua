@@ -61,8 +61,24 @@ return {
             end,
         },
         {
+            "<F4>", "<cmd>:Leaderf! rg --next<cr>",
+            desc = "Goto Next rg result",
+            noremap = false,
+            silent = true,
+        },
+        {
+            "<S-F4>", "<cmd>:Leaderf! rg --prev<cr>",
+            desc = "Goto Next rg result",
+            noremap = false,
+            silent = true,
+        },
+        {
             "<leader>fR", "<cmd>:Leaderf! rg --recall <cr>",
             desc = "Resume Rg window", noremap = false,
+        },
+        {
+            "<leader>f\\", "<cmd>:LeaderfRgInteractive<cr>",
+            desc = "Interactive search", noremap = false,
         },
     },
     init = function()
