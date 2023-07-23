@@ -39,7 +39,7 @@ return {
         },
         {
             "<leader>fs", "<cmd>:LeaderfBufTag<cr>",
-            desc = "Find buffer Symbol (Leaderf)", noremap = false,
+            desc = "Find buffer Symbol", noremap = false,
         },
         {
             "<leader>fl", "<cmd>:LeaderfLine<cr>",
@@ -53,7 +53,7 @@ return {
 
         {
             "<leader>fc", "",
-            desc = "Find current word (Leaderf rg)",
+            desc = "Find current word (rg)",
             noremap = false,
             callback = function()
                 local cword = vim.fn.expand('<cword>')
@@ -80,6 +80,10 @@ return {
             "<leader>f\\", "<cmd>:LeaderfRgInteractive<cr>",
             desc = "Interactive search", noremap = false,
         },
+        {
+            "<leader>fb", "<cmd>:LeaderfBuffer<cr>",
+            desc = "Find Buffers"
+        },
     },
     init = function()
         vim.g.Lf_Gtagslabel = "native-pygments"
@@ -87,7 +91,7 @@ return {
         vim.g.Lf_GtagsAutoGenerate = false
         vim.g.Lf_GtagsAutoUpdate = false
 
-        vim.g.Lf_ShortcutF = "<leader>ff"  -- to avoid <leader>f open LeaderfFile picker
+        vim.g.Lf_ShortcutF = "<leader>p"  -- to avoid <leader>f open LeaderfFile picker
         vim.g.Lf_ShortcutB = "<leader>fb"  -- to avoid <leader>b open LeaderBuffer picker
 
         vim.g.Lf_WindowPosition = 'popup'

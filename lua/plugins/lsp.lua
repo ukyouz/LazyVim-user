@@ -42,6 +42,7 @@ return {
                     })
                     vim.keymap.set("n", "<leader>lk", vim.lsp.buf.hover, {
                         buffer = ev.buf,
+                        desc = "Show hover contents",
                     })
                     -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = ev.buf})
                     -- vim.keymap.set("n", "<leader>lk", vim.lsp.buf.signature_help, { buffer = ev.buf, desc =
@@ -52,9 +53,9 @@ return {
                     --     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                     -- end, {buffer = ev.buf})
                     -- vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, {buffer = ev.buf})
-                    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {
+                    vim.keymap.set("n", "<space>lr", vim.lsp.buf.rename, {
                         buffer = ev.buf,
-                        desc = "ReName variable by LSP",
+                        desc = "Rename variable by LSP",
                     })
                     -- vim.keymap.set({
                     --     "n",

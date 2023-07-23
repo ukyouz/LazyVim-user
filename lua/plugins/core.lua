@@ -58,7 +58,14 @@ return {
             --   disable = { filetypes = { "TelescopePrompt" } },
         },
         config = function(_, opts)
-            require("which-key").setup(opts)
+            local wk = require("which-key")
+            wk.setup(opts)
+
+            wk.register({["<leader>f"] = { name = "+Leaderf" }})
+            wk.register({["<leader>g"] = { name = "+Git" }})
+            wk.register({["<leader>l"] = { name = "+Lsp" }})
+            wk.register({["<leader>s"] = { name = "+Session" }})
+            wk.register({["<leader>t"] = { name = "+Telescope" }})
         end,
     },
     {
