@@ -32,6 +32,8 @@ if H.is_windows() then
         cache_enabled = 1,
     }
     vim.g.python3_host_prog = vim.fn.expand("$LOCALAPPDATA/Programs/Python/Python310/python.exe")
+else
+    vim.g.python3_host_prog = vim.fn.expand("/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10")
 end
 
 -- require("lazy").setup({
