@@ -82,7 +82,7 @@ return {
             "hrsh7th/cmp-nvim-lsp-signature-help",
             -- "hrsh7th/cmp-path",
         },
-        event = "VimEnter",
+        event = "BufReadPost",
         opts = function(_, opts)
             local cmp = require "cmp"
             -- opts.enabled = function()

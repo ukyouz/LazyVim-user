@@ -36,12 +36,6 @@ else
     vim.g.python3_host_prog = vim.fn.expand("/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10")
 end
 
--- require("lazy").setup({
---   spec = {
---     { import = "plugins" },
---   },
--- })
-
 require("lazy").setup({
     spec = {
         -- add LazyVim and import its plugins
@@ -72,7 +66,7 @@ require("lazy").setup({
                 "gzip",
                 "matchit",
                 -- "matchparen",
-                -- "netrwPlugin",
+                "netrwPlugin",
                 "tarPlugin",
                 "tohtml",
                 "tutor",
