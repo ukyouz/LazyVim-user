@@ -44,7 +44,12 @@ return {
                         buffer = ev.buf,
                         desc = "Show hover contents",
                     })
-                    -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = ev.buf})
+                    vim.keymap.set('n', '<space>ld', vim.diagnostic.open_float, {
+                        desc = "Show Diagnostic",
+                    })
+                    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {
+                        buffer = ev.buf
+                    })
                     -- vim.keymap.set("n", "<leader>lk", vim.lsp.buf.signature_help, { buffer = ev.buf, desc =
                     -- "Lsp signature" })
                     -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, {buffer = ev.buf})
@@ -79,7 +84,7 @@ return {
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
+            -- "hrsh7th/cmp-nvim-lsp-signature-help",
             -- "hrsh7th/cmp-path",
         },
         event = "BufReadPost",
@@ -112,9 +117,9 @@ return {
                 }),
             }
             opts.sources = cmp.config.sources({
-                {
-                    name = "nvim_lsp_signature_help",
-                },
+                -- {
+                --     name = "nvim_lsp_signature_help",
+                -- },
                 {
                     name = "nvim_lsp",
                 },
