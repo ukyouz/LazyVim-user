@@ -94,6 +94,8 @@ return {
         vim.g.Lf_ShortcutF = "<leader>p"  -- to avoid <leader>f open LeaderfFile picker
         vim.g.Lf_ShortcutB = "<leader>fb"  -- to avoid <leader>b open LeaderBuffer picker
 
+        vim.g.Lf_PopupColorscheme = 'onedark'
+        -- vim.g.Lf_StlColorscheme = 'onedark'
         vim.g.Lf_WindowPosition = 'popup'
         vim.g.Lf_WindowHeight = 0.4
         vim.g.Lf_PopupHeight = 0.4
