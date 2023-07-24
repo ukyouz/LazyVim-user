@@ -8,6 +8,7 @@ return {
     },
     {
         "vim-airline/vim-airline",
+        enabled = false,
         dependencies = {
             "vim-airline/vim-airline-themes",
         },
@@ -17,8 +18,8 @@ return {
             vim.cmd("let g:airline#extensions#tabline#enabled = 0")
             vim.cmd("let g:airline#extensions#whitespace#enabled = 0")
             vim.cmd("let g:airline#extensions#vista#enabled = 0")
-            vim.cmd("let g:airline#extensions#tagbar#flags = 'f'")
-            vim.cmd("let g:airline_highlighting_cache = 1")
+            -- vim.cmd("let g:airline#extensions#tagbar#flags = 'f'")
+            -- vim.cmd("let g:airline_highlighting_cache = 1")
             vim.cmd("let g:airline#extensions#hunks#enabled = 0")
             vim.cmd("let g:airline_skip_empty_sections = 1")
         end,
@@ -31,6 +32,69 @@ return {
             vim.g.airline_symbols.linenr = " "
             vim.g.airline_symbols.colnr = ":"
         end,
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        opts = {
+            options = {
+                component_separators = {
+                    left = "",
+                    right = "",
+                },
+                section_separators = { left = '', right = ''},
+                -- refresh = {
+                --     statusline = 86400,
+                -- },
+            },
+            sections = {
+                lualine_b = {},
+                lualine_c = {
+                    {
+                        "filename",
+                        path = 1,
+                    },
+                },
+                lualine_x = {
+                    {
+                        "searchcount",
+                        maxcount = 9999,
+                    },
+                    {
+                        "fileformat",
+                    },
+                    {
+                        "filetype",
+                    },
+                    {
+                        "diagnostics",
+                    },
+                },
+            },
+            inactive_sections = {
+                lualine_b = {},
+                lualine_c = {
+                    {
+                        "filename",
+                        path = 1,
+                    },
+                },
+                lualine_x = {
+                    {
+                        "searchcount",
+                        maxcount = 9999,
+                    },
+                    {
+                        "fileformat",
+                    },
+                    {
+                        "filetype",
+                    },
+                },
+            },
+        },
     },
     {
         "mrjones2014/smart-splits.nvim",
