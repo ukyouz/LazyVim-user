@@ -2,14 +2,15 @@ return {
     {
         -- only work for Neovim version < 0.9.0
         "ukyouz/vim-gutentags",
-        -- enabled = false,
+        enabled = false,
+        event = "VeryLazy",
         branch = "improve_update_perf",
-        ft = {
-            "c",
-            "cpp",
-            "php",
-            "python",
-        },
+        -- ft = {
+        --     "c",
+        --     "cpp",
+        --     "php",
+        --     "python",
+        -- },
         init = function()
             local user_dir = vim.api.nvim_eval("expand('~/.LfCache/gtags')")
             -- vim.o.cscopetag = true
