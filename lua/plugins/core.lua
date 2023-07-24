@@ -69,6 +69,34 @@ return {
         end,
     },
     {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            keywords = {
+                JTODO = { icon = " ", color = "info" },
+            },
+        }
+    },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        opts = {
+            modes = {
+                char = {
+                    keys = { "f", "F", "t", "T", "," },
+                },
+            },
+        },
+        -- stylua: ignore
+        keys = {
+          { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+          { "t", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+          { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+          { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+        --   { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
+    },
+    {
         "Shatur/neovim-session-manager",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -95,6 +123,19 @@ return {
                 command = "ContextDisableWindow",
             })
         end,
+    },
+    {
+        "RRethy/vim-illuminate",
+        event = "BufReadPost",
+        config = function()
+            require('illuminate').configure({
+                providers = {
+                    'treesitter',
+                    'lsp',
+                    -- 'regex',
+                },
+            })
+        end
     },
     {
         "NvChad/nvim-colorizer.lua",
