@@ -234,21 +234,14 @@ return {
             "cpp",
         },
         config = function()
-            vim.api.nvim_set_keymap("n", "<leader>rd", "", {
+            vim.api.nvim_set_keymap("n", "<leader>rd", ":<C-R>=printf('CdfCalculateToken %s', expand('<cword>'))<CR><CR>", {
                 desc = "Reveal definition",
                 noremap = false,
-                callback = function()
-                    local cword = vim.fn.expand("<cword>")
-                    vim.api.nvim_exec(string.format("CdfCalculateToken %s", cword), false)
-                end,
             })
-            vim.api.nvim_set_keymap("x", "<leader>rd", "", {
+            vim.api.nvim_set_keymap("x", "<leader>rd", ":<C-U><C-R>=printf('CdfCalculateToken %s', CdfGetVisualSelection())<CR><CR>", {
                 desc = "Reveal definition",
                 noremap = false,
-                callback = function()
-                    local cword = vim.fn.expand("<cword>")
-                    vim.api.nvim_exec(string.format("CdfCalculateToken %s", cword), false)
-                end,
+                silent = false,
             })
         end,
     },
