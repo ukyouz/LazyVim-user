@@ -117,7 +117,7 @@ return {
         event = "VeryLazy",
         keys = {
             {
-                "<C-r>", "<cmd>Telescope projects<cr>",
+                "<leader>tp", "<cmd>Telescope projects<cr>",
                 desc = "Find Projects",
             },
         },
