@@ -190,7 +190,7 @@ return {
     },
     {
         "RRethy/vim-illuminate",
-        event = "BufReadPost",
+        event = "VeryLazy",
         config = function()
             require('illuminate').configure({
                 providers = {
@@ -203,7 +203,6 @@ return {
     },
     {
         "NvChad/nvim-colorizer.lua",
-        event = "BufReadPost",
         cmd = {
             "ColorizerToggle",
             "ColorizerAttachToBuffer",
@@ -221,14 +220,12 @@ return {
     },
     {
         "machakann/vim-highlightedyank",
-        event = "BufReadPost",
         init = function()
             vim.g.highlightedyank_highlight_duration = 250
         end,
     },
     {
         "ukyouz/Vim-C-Defines",
-        event = "BufReadPost",
         ft = {
             "c",
             "cpp",
@@ -247,7 +244,6 @@ return {
     },
     {
         "skywind3000/vim-preview",
-        event = "BufReadPost",
         ft = {
             "c",
             "cpp",
@@ -294,7 +290,6 @@ return {
     },
     {
         "tpope/vim-surround",
-        event = "BufReadPost",
     }, -- add surround movement
     {
         "numToStr/Comment.nvim",
@@ -321,11 +316,9 @@ return {
     }, -- better comment action
     {
         "tpope/vim-repeat",
-        event = "BufReadPost",
     }, -- better . repeat action
     {
         "tpope/vim-unimpaired",
-        event = "BufReadPost",
     }, -- add common `[`, `]` movement
     {
         "kshenoy/vim-signature",
@@ -333,15 +326,12 @@ return {
     },
     {
         "wellle/targets.vim",
-        event = "BufReadPost",
     }, -- add more textobject
     {
         "michaeljsmith/vim-indent-object",
-        event = "BufReadPost",
     }, -- add indent as a textobject
     {
         "mg979/vim-visual-multi",
-        event = "BufReadPost",
         config = function()
             vim.g.VM_theme = "codedark"
         end,
@@ -355,7 +345,6 @@ return {
     },
     {
         "stevearc/aerial.nvim",
-        -- event = "BufReadPost",
         keys = {
             {
                 "<leader>ls",

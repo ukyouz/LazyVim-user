@@ -1,6 +1,11 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        ft = {
+            "python",
+            "cpp",
+            "c",
+        },
         config = function()
             -- Setup language servers.
             local lspconfig = require("lspconfig")
@@ -87,7 +92,7 @@ return {
             -- "hrsh7th/cmp-nvim-lsp-signature-help",
             -- "hrsh7th/cmp-path",
         },
-        event = "BufReadPost",
+        event = "VeryLazy",
         opts = function(_, opts)
             local cmp = require "cmp"
             -- opts.enabled = function()
