@@ -47,3 +47,16 @@ H.augroup("disableLspSemanticHL", {
         }
     }
 })
+
+H.augroup("highlightTrailingWhitespace", {
+    {
+        events = {"VimEnter", "WinEnter"},
+        opts = {
+            callback = function(args)
+                -- :match ExtraWhitespace /\s\+$/
+                vim.cmd([[highlight ExtraWhitespace ctermfg=red guifg=red ctermbg=red guibg=red]])
+                vim.cmd([[match ExtraWhitespace /\s\+$/]])
+            end
+        },
+    }
+})
