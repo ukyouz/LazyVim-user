@@ -4,34 +4,26 @@ return {
     event = "VimEnter",
     keys = {
         {
-            "<leader>fd", "",
+            "<leader>fd", ":<c-r>=printf('Leaderf! gtags -d %s --auto-jump', expand('<cword>'))<cr><cr>",
             desc = "Find gtags Definition",
             noremap = false,
-            callback = function()
-                local cword = vim.fn.expand('<cword>')
-                vim.api.nvim_exec(string.format("Leaderf! gtags -d %s --auto-jump", cword), true)
-            end,
         },
         {
             "<leader>p", "<cmd>:LeaderfFile<cr>",
             desc = "Find Files", noremap = false,
         },
-        {
-            "<leader>ft", "<cmd>:LeaderfTag<cr>",
-            desc = "Find Tags", noremap = false,
-        },
+        -- {
+        --     "<leader>ft", "<cmd>:LeaderfTag<cr>",
+        --     desc = "Find Tags", noremap = false,
+        -- },
         {
             "<leader>fg", "<cmd>:Leaderf gtags<cr>",
             desc = "Find Gtags", noremap = false,
         },
         {
-            "<leader>fr", "",
+            "<leader>fr", ":<c-r>=printf('Leaderf! gtags -r %s --auto-jump', expand('<cword>'))<cr><cr>",
             desc = "Find References",
             noremap = false,
-            callback = function()
-                local cword = vim.fn.expand('<cword>')
-                vim.api.nvim_exec(string.format("Leaderf! gtags -r %s --auto-jump", cword), true)
-            end,
         },
         {
             "<leader>fG", "<cmd>:Leaderf! gtags --recall <cr>",
@@ -50,15 +42,10 @@ return {
             desc = "Find Words (Live rg)",
             noremap = false,
         },
-
         {
-            "<leader>fc", "",
+            "<leader>fc", ":<c-r>=printf('Leaderf! rg -s -w -F %s ', expand('<cword>'))<cr><cr>",
             desc = "Find current word (rg)",
             noremap = false,
-            callback = function()
-                local cword = vim.fn.expand('<cword>')
-                vim.api.nvim_exec(string.format("Leaderf! rg -s -w -F %s ", cword), true)
-            end,
         },
         {
             "<F4>", "<cmd>:Leaderf! rg --next<cr>",
