@@ -282,11 +282,16 @@ return {
                 "<cr>",
                 "<cmd>Hi}<cr>",
             },
+            {
+                "<s-cr>",
+                "<cmd>Hi{<cr>",
+            },
         },
         init = function()
             vim.cmd("let HiSet = 'm<cr>'")
             vim.cmd("let HiErase = 'm<bs>'")
             vim.cmd("let HiClear = 'm<del>'")
+            vim.cmd("let HiSyncMode = 1")
         end,
     },
     {
