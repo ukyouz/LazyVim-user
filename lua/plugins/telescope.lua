@@ -29,7 +29,7 @@ return {
             },
             {
                 "<leader>tk", "<cmd>:Telescope keymaps<cr>",
-                desc = "Find Helps",
+                desc = "Find Keymaps",
             },
         },
         init = function(_, opts)
@@ -130,6 +130,7 @@ return {
                     "c:/Users/johnny_cheng",
                     "d:",
                 },
+                patterns = { ".git", "Makefile", "*.sln", "build/env.sh" }
             }
             if H.has_plugin "telescope.nvim" then
                 require('telescope').load_extension('projects')
