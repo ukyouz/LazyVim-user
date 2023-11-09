@@ -12,26 +12,26 @@ return {
             "<leader>p", "<cmd>:LeaderfFile<cr>",
             desc = "Find Files", noremap = false,
         },
-        -- {
-        --     "<leader>ft", "<cmd>:LeaderfTag<cr>",
-        --     desc = "Find Tags", noremap = false,
-        -- },
+        {
+            "<leader>ft", "<cmd>:Leaderf gtags --current-buffer<cr>",
+            desc = "Find buffer Tag", noremap = false,
+        },
         {
             "<leader>fg", "<cmd>:Leaderf gtags<cr>",
             desc = "Find Gtags", noremap = false,
-        },
-        {
-            "<leader>fr", ":<c-r>=printf('Leaderf! gtags -r %s --auto-jump', expand('<cword>'))<cr><cr>",
-            desc = "Find References",
-            noremap = false,
         },
         {
             "<leader>fG", "<cmd>:Leaderf! gtags --recall <cr>",
             desc = "Resume Gtags window", noremap = false,
         },
         {
-            "<leader>fs", "<cmd>:LeaderfBufTag<cr>",
-            desc = "Find buffer Symbol", noremap = false,
+            "<leader>fr", ":<c-r>=printf('Leaderf! gtags -r %s --auto-jump', expand('<cword>'))<cr><cr>",
+            desc = "Find define References",
+            noremap = false,
+        },
+        {
+            "<leader>fs", ":<c-r>=printf('Leaderf gtags -s %s --auto-jump', expand('<cword>'))<cr><cr>",
+            desc = "Find Symbol references", noremap = false,
         },
         {
             "<leader>fl", "<cmd>:LeaderfLine<cr>",
@@ -44,18 +44,22 @@ return {
         },
         {
             "<leader>fc", ":<c-r>=printf('Leaderf! rg -s -w -F %s ', expand('<cword>'))<cr><cr>",
-            desc = "Find current word (rg)",
+            desc = "Find Current word (rg)",
             noremap = false,
         },
         {
+            "<leader>fR", "<cmd>:Leaderf! rg --recall <cr>",
+            desc = "Resume Rg window", noremap = false,
+        },
+        {
             "<F4>", "<cmd>:Leaderf! rg --next<cr>",
-            desc = "Goto Next rg result",
+            desc = "Goto next rg result",
             noremap = false,
             silent = true,
         },
         {
             "<S-F4>", "<cmd>:Leaderf! rg --prev<cr>",
-            desc = "Goto Next rg result",
+            desc = "Goto prev rg result",
             noremap = false,
             silent = true,
         },
@@ -64,10 +68,6 @@ return {
             desc = "Update Gtags",
             noremap = false,
             silent = false,
-        },
-        {
-            "<leader>fR", "<cmd>:Leaderf! rg --recall <cr>",
-            desc = "Resume Rg window", noremap = false,
         },
         {
             "<leader>f\\", "<cmd>:LeaderfRgInteractive<cr>",
@@ -86,7 +86,7 @@ return {
 
         vim.g.Lf_ShortcutF = "<leader>p"  -- to avoid <leader>f open LeaderfFile picker
         vim.g.Lf_ShortcutB = "<leader>fb"  -- to avoid <leader>b open LeaderBuffer picker
-
+        vim.g.Lf_NeedCacheTime = 1
         vim.g.Lf_PopupColorscheme = 'onedark'
         -- vim.g.Lf_StlColorscheme = 'onedark'
         vim.g.Lf_WindowPosition = 'popup'
