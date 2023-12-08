@@ -7,6 +7,12 @@ return {
         end,
     },
     {
+        "ukyouz/syntax-highlighted-cursor.nvim",
+        config = function()
+            require("syntax-highlighted-cursor").setup()
+        end,
+    },
+    {
         "vim-airline/vim-airline",
         enabled = false,
         dependencies = {
