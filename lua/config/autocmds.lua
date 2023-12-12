@@ -63,3 +63,17 @@ H.augroup("highlightTrailingWhitespace", {
         },
     }
 })
+
+-- https://superuser.com/questions/815416/hitting-enter-in-the-quickfix-window-doesnt-work
+-- " In the quickfix window, <CR> is used to jump to the error under the
+-- " cursor, so undefine the mapping there.
+-- autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+H.augroup("FixQuickFixEnter", {
+    {
+        events = {"BufReadPost"},
+        opts = {
+            pattern = {"quickfix"},
+            command = "nnoremap <buffer> <CR> <CR>",
+        },
+    }
+})
