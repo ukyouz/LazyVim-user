@@ -29,7 +29,7 @@ H.augroup("autoreload", {
         opts = {
             pattern = {"*"},
             desc = "Ensure to load the latest file revision",
-            command = "if mode() != 'c' | checktime | endif",
+            command = "if mode() != 'c' | silent! checktime | endif",
         },
     },
 })
