@@ -69,6 +69,9 @@ return {
                         maxcount = 9999,
                     },
                     {
+                        "encoding",
+                    },
+                    {
                         "fileformat",
                     },
                     {
@@ -91,6 +94,9 @@ return {
                     {
                         "searchcount",
                         maxcount = 9999,
+                    },
+                    {
+                        "encoding",
                     },
                     {
                         "fileformat",
