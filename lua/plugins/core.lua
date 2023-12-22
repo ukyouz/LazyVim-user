@@ -211,6 +211,7 @@ return {
                     'lsp',
                     'regex',
                 },
+                delay = 300,
             })
         end
     },
@@ -385,6 +386,7 @@ return {
             layout = {
                 min_width = 28,
             },
+            disable_max_lines = 50000,
             show_guides = true,
             -- filter_kind = false,
             guides = {

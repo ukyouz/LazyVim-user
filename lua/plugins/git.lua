@@ -2,6 +2,7 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         enabled = vim.fn.executable "git" == 1,
+        event = "VeryLazy",
         -- ft = "gitcommit",
         keys = {
             -- GitSigns
