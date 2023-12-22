@@ -336,9 +336,6 @@ return {
         event = "VeryLazy",
     },
     {
-        "wellle/targets.vim",
-    }, -- add more textobject
-    {
         "michaeljsmith/vim-indent-object",
     }, -- add indent as a textobject
     {
