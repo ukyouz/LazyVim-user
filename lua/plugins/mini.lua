@@ -65,11 +65,20 @@ return {
             })
 
             -- jump to next after search for f/F/t/T
-            require('mini.jump').setup({
+            local jump = require('mini.jump')
+            jump.setup({
                 delay = {
                     highlight = 0,
                     idle_stop = 10000,
                 }
+            })
+            vim.keymap.set("n", "<Esc>", "*", {
+                desc = "Clear mini.jump",
+                callback = function()
+                    if jump.state.jumping then
+                        jump.stop_jumping()
+                    end
+                end
             })
         end,
     },
