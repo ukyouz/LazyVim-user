@@ -16,7 +16,7 @@ if H.is_windows() then
     vim.opt.guifontwide = "メイリオ"
     vim.opt.fileencodings = "cp932,utf-8"
 else
-    vim.opt.guifont = "FiraCode Nerd Font Mono:h14"
+    vim.opt.guifont = "FiraCode Nerd Font Mono:h12"
 end
 vim.opt.hlsearch=true
 vim.opt.incsearch=true
