@@ -174,14 +174,6 @@ return {
         },
     },
     {
-        "Shatur/neovim-session-manager",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        event = "VimLeave",
-        cmd = "SessionManager",
-    },
-    {
         "wellle/context.vim",
         event = "BufEnter",
         config = function()

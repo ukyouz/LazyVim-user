@@ -113,28 +113,58 @@ return {
     --     end
     -- },
     {
-        "ahmedkhalf/project.nvim",
-        event = "VeryLazy",
+        "natecraddock/sessions.nvim",
+        config = function()
+            require("sessions").setup({
+                -- events = { "WinEnter" },
+                session_filepath = vim.fn.stdpath("data") .. "/sessions",
+                absolute = true,
+            })
+            H.augroup("autosavesession", {
+                {
+                    events = {"QuitPre"},
+                    opts = {
+                        pattern = {"*"},
+                        desc = "Save session when quit",
+                        command = "silent! SessionsSave"
+                    },
+                },
+            })
+        end
+    },
+    {
+        "natecraddock/workspaces.nvim",
+        events = "VeryLazy",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "natecraddock/sessions.nvim",
+        },
         keys = {
             {
-                "<leader>tp", "<cmd>Telescope projects<cr>",
+                "<leader>tp", "<cmd>:Telescope workspaces<cr>",
                 desc = "Find Projects",
             },
         },
         config = function()
-            require("project_nvim").setup {
-              -- your configuration comes here
-              -- or leave it empty to use the default settings
-              -- refer to the configuration section below
-                exclude_dirs = {
-                    "c:/Users/johnny_cheng",
-                    "d:",
-                },
-                patterns = { ".git", "Makefile", "*.sln", "build/env.sh" }
-            }
+            require("workspaces").setup({
+                auto_open = true,
+                hooks = {
+                    open = function()
+                        require("sessions").load(nil, { silent = true })
+
+                        -- enter normal mode
+                        local key = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
+                        vim.api.nvim_feedkeys(key, "n", false)
+                    end,
+                }
+            })
             if H.has_plugin "telescope.nvim" then
-                require('telescope').load_extension('projects')
+                require('telescope').load_extension("workspaces")
             end
-        end,
-    }
+
+            local pwd = vim.fn.getcwd()
+            pwd = vim.fs.normalize(pwd)
+            require("workspaces").add(pwd)
+        end
+    },
 }
