@@ -4,7 +4,7 @@ return {
     event = "VimEnter",
     keys = {
         {
-            "<leader>fd", ":<c-r>=printf('Leaderf! gtags -d %s --auto-jump', expand('<cword>'))<cr><cr>",
+            "<leader>fd", "<Plug>LeaderfGtagsDefinition",
             desc = "Find gtags Definition",
             noremap = false,
         },
@@ -25,12 +25,12 @@ return {
             desc = "Resume Gtags window", noremap = false,
         },
         {
-            "<leader>fr", ":<c-r>=printf('Leaderf! gtags -r %s --auto-jump', expand('<cword>'))<cr><cr>",
+            "<leader>fr", "<Plug>LeaderfGtagsReference",
             desc = "Find define References",
             noremap = false,
         },
         {
-            "<leader>fs", ":<c-r>=printf('Leaderf gtags -s %s --auto-jump', expand('<cword>'))<cr><cr>",
+            "<leader>fs", "<Plug>LeaderfGtagsSymbol",
             desc = "Find Symbol references", noremap = false,
         },
         {
@@ -118,6 +118,7 @@ return {
             Self=   {{"<ESC>", ':exec g:Lf_py "selfExplManager.quit()"<CR>'}},
             Colorscheme= {{"<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>'}},
         }
+        vim.g.Lf_PreviewScrollStepSize = 10
         vim.g.Lf_PreviewResult = {
             File = 0,
             Buffer = 0,
@@ -128,7 +129,7 @@ return {
             Line = 1,
             Colorscheme = 1,
             Rg = 0,
-            Gtags = 0,
+            Gtags = 1,
         }
 
         vim.g.Lf_CtagsFuncOpts = {
