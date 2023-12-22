@@ -12,24 +12,32 @@ return {
         end,
         keys = {
             {
-                "<leader>tf", "<cmd>:Telescope find_files<cr>",
-                desc = "Find Files",
+                "<leader>tf", "<cmd>:Telescope find_files file_encoding=cp932<cr>",
+                desc = "Telescope Files",
             },
             {
-                "<leader>tg", "<cmd>:Telescope live_grep<cr>",
-                desc = "Live Grep",
+                "<leader>tc", "<cmd>:Telescope grep_string<cr>",
+                desc = "Telescope Current word",
             },
             {
-                "<leader>tb", "<cmd>:Telescope buffers<cr>",
-                desc = "Find Buffers",
+                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=cp932<cr>",
+                desc = "Telescope Keymaps",
             },
             {
-                "<leader>th", "<cmd>:Telescope help_tags<cr>",
-                desc = "Find Helps",
+                "<leader>tg", "<cmd>:Telescope live_grep file_encoding=cp932<cr>",
+                desc = "Telescope Grep (Live)",
             },
             {
-                "<leader>tk", "<cmd>:Telescope keymaps<cr>",
-                desc = "Find Keymaps",
+                "<leader>tb", "<cmd>:Telescope buffers file_encoding=cp932<cr>",
+                desc = "Telescope Buffers",
+            },
+            {
+                "<leader>th", "<cmd>:Telescope help_tags file_encoding=cp932<cr>",
+                desc = "Telescope Helps",
+            },
+            {
+                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=cp932<cr>",
+                desc = "Telescope Keymaps",
             },
         },
         init = function(_, opts)
@@ -59,8 +67,8 @@ return {
                     },
                     mappings = {
                         i = {
-                            ["<Down>"] = actions.cycle_history_next,
-                            ["<Up>"] = actions.cycle_history_prev,
+                            -- ["<Down>"] = actions.cycle_history_next,
+                            -- ["<Up>"] = actions.cycle_history_prev,
                             ["<C-d>"] = false,
                             ["<C-u>"] = false,
                             ["<C-j>"] = actions.move_selection_next,
