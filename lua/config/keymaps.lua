@@ -12,13 +12,12 @@ local function map(mode, lhs, rhs, opts)
         mode = mode,
     }).id] then
         opts = opts or {}
-        opts.silent = opts.silent ~= false
         vim.keymap.set(mode, lhs, rhs, opts)
     end
 end
 
 map("n", ";", ":", {
-    silent = true,
+    -- silent = false,
 })
 map("n", "*", "<cmd>keepjumps normal!*N<cr>", {
     desc = "Search forward and highlight current first",
