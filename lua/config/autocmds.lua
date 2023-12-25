@@ -53,7 +53,7 @@ H.augroup("highlightTrailingWhitespace", {
         events = {"VimEnter", "WinEnter"},
         opts = {
             callback = function(args)
-                if vim.bo.filetype == "aerial" then
+                if vim.bo.buftype == "nofile" then
                     return
                 end
                 -- :match ExtraWhitespace /\s\+$/
