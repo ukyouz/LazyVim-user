@@ -170,9 +170,11 @@ return {
                 require('telescope').load_extension("workspaces")
             end
 
-            local pwd = vim.fn.getcwd()
-            pwd = vim.fs.normalize(pwd)
-            require("workspaces").add(pwd)
+            if vim.bo.buftype == "nofile" then
+                local pwd = vim.fn.getcwd()
+                pwd = vim.fs.normalize(pwd)
+                require("workspaces").add(pwd)
+            end
         end
     },
 }
