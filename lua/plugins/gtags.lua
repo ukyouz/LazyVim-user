@@ -12,7 +12,7 @@ return {
         --     "python",
         -- },
         init = function()
-            local user_dir = vim.api.nvim_eval("expand('~/.LfCache/gtags')")
+            local user_dir = vim.fn.expand('~/LeaderF/gtags')
             -- vim.o.cscopetag = true
             -- vim.o.cscopeprg = "gtags-cscope"
             vim.g.gutentags_modules = {
