@@ -16,7 +16,7 @@ return {
             {"<leader>gs", "", callback = function() require("gitsigns").stage_hunk() end, desc = "Stage Git hunk" },
             {"<leader>gS", "", callback = function() require("gitsigns").stage_buffer() end, desc = "Stage Git buffer" },
             {"<leader>gu", "", callback = function() require("gitsigns").undo_stage_hunk() end, desc = "Unstage Git hunk" },
-            {"<leader>gd", "", callback = function() require("gitsigns").diffthis() end, desc = "View Git diff" },
+            -- {"<leader>gd", "", callback = function() require("gitsigns").diffthis() end, desc = "View Git diff" },
         },
         opts = {
             signcolumn = true,
