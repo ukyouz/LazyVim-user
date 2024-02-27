@@ -21,6 +21,14 @@ return {
             desc = "Find Gtags", noremap = false,
         },
         {
+            "<F3>", "<cmd>:Leaderf gtags --next<cr>",
+            desc = "Find Gtags", noremap = false,
+        },
+        {
+            "<S-F3>", "<cmd>:Leaderf gtags --previous<cr>",
+            desc = "Find Gtags", noremap = false,
+        },
+        {
             "<leader>fG", "<cmd>:Leaderf! gtags --recall <cr>",
             desc = "Resume Gtags window", noremap = false,
         },
