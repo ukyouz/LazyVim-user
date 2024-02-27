@@ -12,9 +12,9 @@ vim.opt.expandtab=true
 vim.opt.fixendofline=false
 vim.opt.formatoptions="qj" -- -=tc
 if H.is_windows() then
-    vim.opt.guifont = "Fira Code Retina:h8"
+    vim.opt.guifont = "Fira Code Retina:h10"
     vim.opt.guifontwide = "メイリオ"
-    vim.opt.fileencodings = "cp932,utf-8"
+    vim.opt.fileencodings = "cp932,euc-jp,utf-8"
 else
     vim.opt.guifont = "FiraCode Nerd Font Mono:h12"
 end

@@ -31,7 +31,7 @@ if H.is_windows() then
         },
         cache_enabled = 1,
     }
-    vim.g.python3_host_prog = vim.fn.expand("$LOCALAPPDATA/Programs/Python/Python310/python.exe")
+    vim.g.python3_host_prog = vim.fn.expand("$LOCALAPPDATA/Programs/Python/Python311/python.exe")
 else
 
 end

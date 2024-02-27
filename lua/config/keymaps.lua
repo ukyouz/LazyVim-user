@@ -42,7 +42,10 @@ map("v", "<C-c>", "\"*y", {
     desc = "Copy to system clipboard",
 })
 
-map("i", "<C-v>", "<esc>\"*pa", {
+map("i", "<C-v>", "<esc>\"*p", {
+    desc = "Paste from system clipboard",
+})
+map("c", "<C-v>", "<c-r>*", {
     desc = "Paste from system clipboard",
 })
 
