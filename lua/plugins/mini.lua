@@ -40,13 +40,13 @@ return {
                 footer = '',
             })
 
-            -- highlight current indentation level
-            local indent = require('mini.indentscope')
-            indent.setup({
-                draw = {
-                    animation = indent.gen_animation.none(),
-                }
-            })
+            -- -- highlight current indentation level
+            -- local indent = require('mini.indentscope')
+            -- indent.setup({
+            --     draw = {
+            --         animation = indent.gen_animation.none(),
+            --     }
+            -- })
 
             -- split and join arguments
             require('mini.splitjoin').setup({
