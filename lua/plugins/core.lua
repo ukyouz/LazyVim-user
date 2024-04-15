@@ -255,6 +255,16 @@ return {
             "cpp",
         },
         config = function()
+            vim.g.Cdf_SupportSourceExtensions = {
+                ".c",
+                ".C",
+                ".cpp",
+                ".CPP",
+            }
+            vim.g.Cdf_SupportHeaderExtensions = {
+                ".h",
+                ".hh",
+            }
             vim.api.nvim_set_keymap("n", "<leader>rd", ":<C-R>=printf('CdfCalculateToken %s', expand('<cword>'))<CR><CR>", {
                 desc = "Reveal definition",
                 noremap = false,
