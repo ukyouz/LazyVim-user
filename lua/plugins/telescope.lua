@@ -50,6 +50,9 @@ return {
                         override_file_sorter = true,     -- override the file sorter
                         case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                                                         -- the default case_mode is "smart_case"
+                    },
+                    sessions_picker = {
+                        sessions_dir = vim.fn.stdpath("data") .. "/sessions/",  -- same as '/home/user/.local/share/nvim/sessions'
                     }
                 },
                 defaults = {
@@ -141,40 +144,20 @@ return {
         end
     },
     {
-        "natecraddock/workspaces.nvim",
-        events = "VeryLazy",
+        "JoseConseco/telescope_sessions_picker.nvim",
         dependencies = {
             "nvim-telescope/telescope.nvim",
-            "natecraddock/sessions.nvim",
         },
         keys = {
             {
-                "<leader>tp", "<cmd>:Telescope workspaces<cr>",
-                desc = "Find Projects",
+                "<leader>ts", "<cmd>:Telescope sessions_picker<cr>",
+                desc = "Find Session",
             },
         },
         config = function()
-            require("workspaces").setup({
-                auto_open = true,
-                hooks = {
-                    open = function()
-                        require("sessions").load(nil, { silent = true })
-
-                        -- enter normal mode
-                        local key = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
-                        vim.api.nvim_feedkeys(key, "n", false)
-                    end,
-                }
-            })
             if H.has_plugin "telescope.nvim" then
-                require('telescope').load_extension("workspaces")
+                require('telescope').load_extension('sessions_picker')
             end
-
-            if vim.bo.buftype == "nofile" then
-                local pwd = vim.fn.getcwd()
-                pwd = vim.fs.normalize(pwd)
-                require("workspaces").add(pwd)
-            end
-        end
+        end,
     },
 }
