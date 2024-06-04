@@ -6,7 +6,7 @@ return {
             "nvim-treesitter/nvim-treesitter-textobjects",
             "nvim-treesitter/playground",
         },
-        event = "CursorHold",
+        -- event = "CursorHold",
         keys = {
             {
                 "<leader>gt", "",
@@ -23,9 +23,9 @@ return {
             require("nvim-treesitter.configs").setup({
                 highlight = {
                     enable = true,
-                    -- disable = function(lang, bufnr)
-                    --     return vim.api.nvim_buf_line_count(bufnr) > 10000
-                    -- end,
+                    disable = function(lang, bufnr)
+                        return vim.api.nvim_buf_line_count(bufnr) > 10000
+                    end,
                     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
                     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
                     -- Using this option may slow down your editor, and you may see some duplicate highlights.
