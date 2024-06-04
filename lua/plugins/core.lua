@@ -10,7 +10,9 @@ return {
     },
     {
         "ukyouz/syntax-highlighted-cursor.nvim",
-        -- enabled = false,
+        enabled = function()
+            return vim.version().minor >= 9
+        end,
         config = function()
             require("syntax-highlighted-cursor").setup()
 
