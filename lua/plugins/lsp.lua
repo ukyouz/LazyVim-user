@@ -31,6 +31,7 @@ return {
             vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
             vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
             vim.diagnostic.config({
+                signs = false,
                 virtual_text = false,
                 signs = false,
             })
