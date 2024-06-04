@@ -33,20 +33,20 @@ H.augroup("autoreload", {
         },
     },
 })
-
-H.augroup("disableLspSemanticHL", {
-    {
-        events = {"BufEnter"},
-        opts = {
-            callback = function(args)
-                -- Hide all semantic highlights
-                for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-                    vim.api.nvim_set_hl(0, group, {})
-                end
-            end,
-        }
-    }
-})
+ 
+-- H.augroup("disableLspSemanticHL", {
+--     {
+--         events = {"BufEnter"},
+--         opts = {
+--             callback = function(args)
+--                 -- Hide all semantic highlights
+--                 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+--                     vim.api.nvim_set_hl(0, group, {})
+--                 end
+--             end,
+--         }
+--     }
+-- })
 
 H.augroup("highlightTrailingWhitespace", {
     {
