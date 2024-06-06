@@ -9,7 +9,18 @@ return {
         config = function()
             -- Setup language servers.
             local lspconfig = require("lspconfig")
-            lspconfig.pyright.setup { }
+            lspconfig.pyright.setup {
+                settings = {
+                    python = {
+                        analysis = {
+                            typeCheckingMode = "basic",
+                            diagnosticSeverityOverrides = {
+                                reportGeneralTypeIssues = "warning",
+                            },
+                        },
+                    },
+                },
+            }
             lspconfig.clangd.setup { }
             lspconfig.intelephense.setup { }
 
@@ -21,6 +32,7 @@ return {
             vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
             vim.diagnostic.config({
                 virtual_text = false,
+                signs = false,
             })
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
