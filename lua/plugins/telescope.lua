@@ -39,6 +39,14 @@ return {
                 "<leader>tk", "<cmd>:Telescope keymaps file_encoding=cp932<cr>",
                 desc = "Telescope Keymaps",
             },
+            {
+                "<leader>ti", "<cmd>:Telescope lsp_incoming_calls file_encoding=cp932<cr>",
+                desc = "Telescope Incoming calls (LSP)",
+            },
+            {
+                "<leader>tr", "<cmd>:Telescope lsp_references file_encoding=cp932<cr>",
+                desc = "Telescope References (LSP)",
+            },
         },
         init = function(_, opts)
             local actions = require "telescope.actions"
@@ -61,7 +69,7 @@ return {
                     layout_config = {
                         vertical = {
                             prompt_position = "top",
-                            -- height = 0.4,
+                            height = 0.99,
                             -- width = 0.8,
                             anchor = "N",
                             mirror = true,
