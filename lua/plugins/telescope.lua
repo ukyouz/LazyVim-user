@@ -16,6 +16,10 @@ return {
                 desc = "Telescope Files",
             },
             {
+                "<leader>tt", ":Telescope lsp_workspace_symbols query=",
+                desc = "Telescope query workspace Tags",
+            },
+            {
                 "<leader>tc", "<cmd>:Telescope grep_string<cr>",
                 desc = "Telescope Current word",
             },
