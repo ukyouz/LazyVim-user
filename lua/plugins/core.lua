@@ -426,4 +426,67 @@ return {
             },
         },
     },
+    {
+        "ThePrimeagen/refactoring.nvim",
+        keys = {
+            {
+                "<leader>rf",
+                ":Refactor extract ",
+                desc = "Refactor: extract to Function...",
+                mode = { "x" },
+            },
+            {
+                "<leader>rv",
+                ":Refactor extract_var ",
+                desc = "Refactor: extract to Var...",
+                mode = { "x" },
+            },
+            {
+                "<leader>ri",
+                ":Refactor inline_var",
+                desc = "Refactor: Inline assigned value",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader>rb",
+                ":Refactor extract_block ",
+                desc = "Refactor: extract Block as function...",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader>rr",
+                function()
+                    require("refactoring").select_refactor()
+                end,
+                desc = "Refactor menu",
+                mode = { "n", "x" },
+            },
+        }
+        -- opts = {
+        --     prompt_func_return_type = {
+        --         go = false,
+        --         java = false,
+
+        --         cpp = false,
+        --         c = false,
+        --         h = false,
+        --         hpp = false,
+        --         cxx = false,
+        --     },
+        --     prompt_func_param_type = {
+        --         go = false,
+        --         java = false,
+
+        --         cpp = false,
+        --         c = false,
+        --         h = false,
+        --         hpp = false,
+        --         cxx = false,
+        --     },
+        --     printf_statements = {},
+        --     print_var_statements = {},
+        --     show_success_message = false, -- shows a message with information about the refactor on success
+        --                                   -- i.e. [Refactor] Inlined 3 variable occurrences
+        -- },
+    }
 }
