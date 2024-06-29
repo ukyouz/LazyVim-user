@@ -74,6 +74,9 @@ require("lazy").setup({
             },
         },
     },
+    change_detection = {
+        notify = false,
+    },
 })
 
 require("config.keymaps")
