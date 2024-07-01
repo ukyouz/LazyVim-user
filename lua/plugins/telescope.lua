@@ -16,11 +16,11 @@ return {
                 desc = "Telescope Files",
             },
             {
-                "<leader>tt", ":Telescope lsp_workspace_symbols query=",
+                "<leader>tt", ":Telescope lsp_workspace_symbols file_encoding=cp932 query=",
                 desc = "Telescope query workspace Tags",
             },
             {
-                "<leader>tc", "<cmd>:Telescope grep_string<cr>",
+                "<leader>tc", "<cmd>:Telescope file_encoding=cp932 grep_string<cr>",
                 desc = "Telescope Current word",
             },
             {
@@ -48,7 +48,7 @@ return {
                 desc = "Telescope Incoming calls (LSP)",
             },
             {
-                "<leader>tr", "<cmd>:Telescope lsp_references file_encoding=cp932<cr>",
+                "<leader>tr", ":Telescope lsp_references file_encoding=cp932 query=",
                 desc = "Telescope References (LSP)",
             },
         },
