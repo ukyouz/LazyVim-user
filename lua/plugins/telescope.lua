@@ -20,7 +20,7 @@ return {
                 desc = "Telescope query workspace Tags",
             },
             {
-                "<leader>tc", "<cmd>:Telescope file_encoding=cp932 grep_string<cr>",
+                "<leader>tc", "<cmd>:Telescope grep_string file_encoding=cp932<cr>",
                 desc = "Telescope Current word",
             },
             {
@@ -54,6 +54,7 @@ return {
         },
         init = function(_, opts)
             local actions = require "telescope.actions"
+            local layout = require "telescope.actions.layout"
             opts = {
                 extensions = {
                     fzf = {
@@ -80,10 +81,23 @@ return {
                             preview_cutoff = 0, -- always show preview event at small visible region
                         },
                     },
+                    path_display = {
+                        "smart",
+                        "shorten",
+                        "truncate",
+                    },
                     mappings = {
+                        n = {
+                            ["p"] = layout.toggle_preview,
+                            ["<C-p>"] = layout.toggle_preview,
+                            ["<C-j>"] = actions.move_selection_next,
+                            ["<C-k>"] = actions.move_selection_previous,
+                        },
                         i = {
                             -- ["<Down>"] = actions.cycle_history_next,
                             -- ["<Up>"] = actions.cycle_history_prev,
+                            ["<C-n>"] = false,
+                            ["<C-p>"] = layout.toggle_preview,
                             ["<C-d>"] = false,
                             ["<C-u>"] = false,
                             ["<C-j>"] = actions.move_selection_next,
@@ -169,6 +183,27 @@ return {
         config = function()
             if H.has_plugin "telescope.nvim" then
                 require('telescope').load_extension('sessions_picker')
+            end
+        end,
+    },
+    {
+        "ukyouz/telescope-gtags",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        keys = {
+            {
+                "<leader>tg", "<cmd>:Telescope gtags file_encoding=cp932<cr>",
+                desc = "Telescope Gtag symbols",
+            },
+            {
+                "<leader>tr", "<cmd>:Telescope gtags_references file_encoding=cp932 initial_mode=normal<cr>",
+                desc = "Telescope References (LSP)",
+            },
+        },
+        config = function()
+            if H.has_plugin "telescope.nvim" then
+                require('telescope').load_extension('gtags')
             end
         end,
     },
