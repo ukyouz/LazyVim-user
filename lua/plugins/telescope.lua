@@ -20,7 +20,7 @@ return {
                 desc = "Telescope query workspace Tags",
             },
             {
-                "<leader>tc", "<cmd>:Telescope grep_string file_encoding=cp932<cr>",
+                "<leader>tc", "<cmd>:Telescope grep_string file_encoding=sjis<cr>",
                 desc = "Telescope Current word",
             },
             {
@@ -92,14 +92,20 @@ return {
                             ["<C-p>"] = layout.toggle_preview,
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-d>"] = false,
+                            ["<C-u>"] = false,  -- use default <C-u> behavior to clear prompt
                         },
                         i = {
                             -- ["<Down>"] = actions.cycle_history_next,
                             -- ["<Up>"] = actions.cycle_history_prev,
+                            ["<C-v>"] = function(_bufnr)
+                                -- paste from system clipboard
+                                vim.cmd [[noautocmd sil <C-r>*]]
+                            end,
                             ["<C-n>"] = false,
                             ["<C-p>"] = layout.toggle_preview,
                             ["<C-d>"] = false,
-                            ["<C-u>"] = false,
+                            ["<C-u>"] = false,  -- use default <C-u> behavior to clear prompt
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
                             ["<Tab>"] = function(_bufnr)
@@ -119,9 +125,13 @@ return {
                 },
             }
             if H.is_windows() then
+                opts.defaults.mappings.n["<A-d>"] = actions.preview_scrolling_down
+                opts.defaults.mappings.n["<A-u>"] = actions.preview_scrolling_up
                 opts.defaults.mappings.i["<A-d>"] = actions.preview_scrolling_down
                 opts.defaults.mappings.i["<A-u>"] = actions.preview_scrolling_up
             else
+                opts.defaults.mappings.n["<D-d>"] = actions.preview_scrolling_down
+                opts.defaults.mappings.n["<D-u>"] = actions.preview_scrolling_up
                 opts.defaults.mappings.i["<D-d>"] = actions.preview_scrolling_down
                 opts.defaults.mappings.i["<D-u>"] = actions.preview_scrolling_up
             end
