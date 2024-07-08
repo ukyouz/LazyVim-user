@@ -16,10 +16,11 @@ local function map(mode, lhs, rhs, opts)
     end
 end
 
-map("n", ";", ":", {
+map({"n", "x"}, ";", ":", {
     -- silent = false,
 })
 map("n", "*", "<cmd>keepjumps normal!*N<cr>", {
+    noremap = true,
     desc = "Search forward and highlight current first",
 })
 map("n", "#", "<cmd>keepjumps normal!#N<cr>", {
