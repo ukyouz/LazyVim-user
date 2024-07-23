@@ -161,24 +161,13 @@ return {
     --     end
     -- },
     {
-        "natecraddock/sessions.nvim",
-        config = function()
-            require("sessions").setup({
-                -- events = { "WinEnter" },
-                session_filepath = vim.fn.stdpath("data") .. "/sessions",
-                absolute = true,
-            })
-            H.augroup("autosavesession", {
-                {
-                    events = {"QuitPre"},
-                    opts = {
-                        pattern = {"*"},
-                        desc = "Save session when quit",
-                        command = "silent! SessionsSave"
-                    },
-                },
-            })
-        end
+        "folke/persistence.nvim",
+        event = "BufReadPre", -- this will only start session saving when an actual file was opened
+        opts = {
+            dir = vim.fn.stdpath("data") .. "/sessions/", -- directory where session files are saved
+            branch = false, -- use git branch in session name
+            need = 2, -- avoid too much sessions for editing single file
+        },
     },
     {
         "JoseConseco/telescope_sessions_picker.nvim",
