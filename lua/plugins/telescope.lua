@@ -12,25 +12,44 @@ return {
         end,
         keys = {
             {
-                "<leader>tf", "<cmd>:Telescope find_files file_encoding=cp932<cr>",
+                "<leader>p", "<cmd>:Telescope find_files file_encoding=cp932<cr>",
                 desc = "Telescope Files",
             },
-            {
-                "<leader>tt", ":Telescope lsp_workspace_symbols file_encoding=cp932 query=",
-                desc = "Telescope query workspace Tags",
-            },
+            -- {
+            --     "<leader>tt", ":Telescope lsp_workspace_symbols file_encoding=cp932 query=",
+            --     desc = "Telescope query workspace Tags",
+            -- },
             {
                 "<leader>tc", "<cmd>:Telescope grep_string file_encoding=sjis<cr>",
                 desc = "Telescope Current word",
             },
             {
+                "<leader>tc", "",
+                callback = function()
+                    local tb = require('telescope.builtin')
+                    
+                    local cword = vim.fn.escape(H.get_visual_selection(), "[]()*+.$^")
+                    tb.live_grep({
+                        default_text = cword,
+                        file_encoding = "sjis",
+                    })
+                    
+                    -- tb.grep_string({
+                    --     search = H.get_visual_selection(),
+                    --     file_encoding = "sjis",
+                    -- })
+                end,
+                desc = "Telescope Current word",
+                mode = { "v" },
+            },
+            {
                 "<leader>tk", "<cmd>:Telescope keymaps file_encoding=cp932<cr>",
                 desc = "Telescope Keymaps",
             },
-            {
-                "<leader>tg", "<cmd>:Telescope live_grep file_encoding=cp932<cr>",
-                desc = "Telescope Grep (Live)",
-            },
+            -- {
+            --     "<leader>tg", "<cmd>:Telescope live_grep file_encoding=cp932<cr>",
+            --     desc = "Telescope Grep (Live)",
+            -- },
             {
                 "<leader>tb", "<cmd>:Telescope buffers file_encoding=cp932<cr>",
                 desc = "Telescope Buffers",
@@ -43,13 +62,25 @@ return {
                 "<leader>tk", "<cmd>:Telescope keymaps file_encoding=cp932<cr>",
                 desc = "Telescope Keymaps",
             },
+            -- {
+            --     "<leader>ti", "<cmd>:Telescope lsp_incoming_calls file_encoding=cp932<cr>",
+            --     desc = "Telescope Incoming calls (LSP)",
+            -- },
+            -- {
+            --     "<leader>tr", ":Telescope lsp_references file_encoding=cp932 query=",
+            --     desc = "Telescope References (LSP)",
+            -- },
             {
-                "<leader>ti", "<cmd>:Telescope lsp_incoming_calls file_encoding=cp932<cr>",
-                desc = "Telescope Incoming calls (LSP)",
+                "<leader>tl", ":Telescope live_grep default_text=",
+                desc = "Telescope Live grep",
             },
             {
-                "<leader>tr", ":Telescope lsp_references file_encoding=cp932 query=",
-                desc = "Telescope References (LSP)",
+                "<leader>tT", "<cmd>:Telescope treesitter file_encoding=cp932<cr>",
+                desc = "Telescope Treesitter",
+            },
+            {
+                "<leader>tR", "<cmd>:Telescope resume<cr>",
+                desc = "Telescope Resume",
             },
         },
         init = function(_, opts)
@@ -57,21 +88,31 @@ return {
             local layout = require "telescope.actions.layout"
             opts = {
                 extensions = {
-                    fzf = {
-                        fuzzy = true,                    -- false will only do exact matching
-                        override_generic_sorter = true,  -- override the generic sorter
-                        override_file_sorter = true,     -- override the file sorter
-                        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                                        -- the default case_mode is "smart_case"
-                    },
+                    -- fzf = {
+                    --     fuzzy = true,                    -- false will only do exact matching
+                    --     override_generic_sorter = true,  -- override the generic sorter
+                    --     override_file_sorter = true,     -- override the file sorter
+                    --     case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                    --                                     -- the default case_mode is "smart_case"
+                    -- },
                     sessions_picker = {
                         sessions_dir = vim.fn.stdpath("data") .. "/sessions/",  -- same as '/home/user/.local/share/nvim/sessions'
                     }
                 },
+                preview = {
+                    treesitter = false,
+                },
                 defaults = {
                     sorting_strategy = "ascending",
-                    layout_strategy = "vertical",
+                    layout_strategy = "center",
                     layout_config = {
+                        center = {
+                            prompt_position = "top",
+                            -- height = 0.99,
+                            width = 0.8,
+                            anchor = "N",
+                            -- mirror = true,
+                        },
                         vertical = {
                             prompt_position = "top",
                             height = 0.99,
@@ -94,10 +135,14 @@ return {
                             ["<C-k>"] = actions.move_selection_previous,
                             ["<C-d>"] = false,
                             ["<C-u>"] = false,  -- use default <C-u> behavior to clear prompt
+                            ["<space>"] = actions.toggle_selection,
+                            -- ["<tab>"] = false,  -- disable: select and go next
+                            -- ["<S-tab>"] = false,  -- disable: select and go prev
                         },
                         i = {
                             -- ["<Down>"] = actions.cycle_history_next,
                             -- ["<Up>"] = actions.cycle_history_prev,
+                            ["<C-space>"] = actions.to_fuzzy_refine,
                             ["<C-v>"] = function(_bufnr)
                                 -- paste from system clipboard
                                 local text = vim.fn.getreg("*")
@@ -176,7 +221,7 @@ return {
         },
         keys = {
             {
-                "<leader>ts", "<cmd>:Telescope sessions_picker<cr>",
+                "<leader>tS", "<cmd>:Telescope sessions_picker<cr>",
                 desc = "Find Session",
             },
         },
@@ -197,8 +242,20 @@ return {
                 desc = "Telescope Gtag symbols",
             },
             {
+                "<leader>td", "<cmd>:Telescope gtags_definitions file_encoding=cp932 initial_mode=normal<cr>",
+                desc = "Telescope Definitions (Gtags)",
+            },
+            {
                 "<leader>tr", "<cmd>:Telescope gtags_references file_encoding=cp932 initial_mode=normal<cr>",
-                desc = "Telescope References (LSP)",
+                desc = "Telescope References (Gtags)",
+            },
+            {
+                "<leader>ts", "<cmd>:Telescope gtags_symbol_usages file_encoding=cp932 initial_mode=normal<cr>",
+                desc = "Telescope Symbols (Gtags)",
+            },
+            {
+                "<leader>tt", "<cmd>:Telescope gtags_buffer_symbols file_encoding=cp932<cr>",
+                desc = "Telescope buffer Tags (Gtags)",
             },
         },
         config = function()
