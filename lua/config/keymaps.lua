@@ -46,7 +46,14 @@ map("v", "<C-c>", "\"*y", {
 map("i", "<C-v>", "<esc>\"*p", {
     desc = "Paste from system clipboard",
 })
-map("c", "<C-v>", "<c-r>*", {
+map("c", "<C-v>", "", {
+    callback = function()
+        local text = vim.fn.getreg("*")
+        local cword = vim.fn.escape(text, " []()*+.$^")
+        vim.fn.setreg("v", string.gsub(cword, "\n", ""))
+        vim.api.nvim_feedkeys(H.key"<C-r>", "n", false)
+        vim.api.nvim_feedkeys("v", "n", false)
+    end,
     desc = "Paste from system clipboard",
 })
 

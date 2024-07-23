@@ -100,7 +100,10 @@ return {
                             -- ["<Up>"] = actions.cycle_history_prev,
                             ["<C-v>"] = function(_bufnr)
                                 -- paste from system clipboard
-                                vim.cmd [[noautocmd sil <C-r>*]]
+                                local text = vim.fn.getreg("*")
+                                vim.fn.setreg("v", string.gsub(text, "\n", ""))
+                                vim.api.nvim_feedkeys(H.key"<C-r>", "n", false)
+                                vim.api.nvim_feedkeys("v", "n", false)
                             end,
                             ["<C-n>"] = false,
                             ["<C-p>"] = layout.toggle_preview,
@@ -110,15 +113,13 @@ return {
                             ["<C-k>"] = actions.move_selection_previous,
                             ["<Tab>"] = function(_bufnr)
                                 -- use leaderF style keybinding: Tab to normal mode
-                                local key = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
-                                vim.api.nvim_feedkeys(key, "n", false)
+                                vim.api.nvim_feedkeys(H.key"<Esc>", "n", false)
                             end,
                             ["<Esc>"] = function(_bufnr)
                                 -- use leaderF style keybinding: single <Esc> click to exit
                                 actions.close(_bufnr)
                                 -- return to normal mode, ugly but it works
-                                local key = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
-                                vim.api.nvim_feedkeys(key, "n", false)
+                                vim.api.nvim_feedkeys(H.key"<Esc>", "n", false)
                             end,
                         },
                     }
