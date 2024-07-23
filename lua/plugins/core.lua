@@ -1,3 +1,5 @@
+local H = require "utils.helper"
+
 return {
     {
         "ukyouz/onedark.vim",
@@ -488,5 +490,31 @@ return {
         --     show_success_message = false, -- shows a message with information about the refactor on success
         --                                   -- i.e. [Refactor] Inlined 3 variable occurrences
         -- },
-    }
+    },
+    {
+        'kevinhwang91/nvim-bqf',
+        ft = 'qf',
+        keys = {
+            {"<", "<cmd>:colder<cr>", ft = {"qf"} },
+            {">", "<cmd>:cnewer<cr>", ft = {"qf"} },
+        },
+        init = function()            
+            opts = {
+                preview = {
+                    auto_preview = false,
+                },
+                func_map = {
+                    stogglebuf = "%",
+                },
+            }
+            if H.is_windows() then
+                opts.func_map.pscrollup = "<A-u>"
+                opts.func_map.pscrolldown = "<A-d>"
+            else
+                opts.func_map.pscrollup = "<D-u>"
+                opts.func_map.pscrolldown = "<D-d>"
+            end
+            require("bqf").setup(opts)
+        end,
+    },
 }
