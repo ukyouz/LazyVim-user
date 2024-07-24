@@ -71,7 +71,7 @@ return {
             --     desc = "Telescope References (LSP)",
             -- },
             {
-                "<leader>tl", ":Telescope live_grep default_text=",
+                "<leader>tl", ":Telescope live_grep file_encoding=sjis default_text=",
                 desc = "Telescope Live grep",
             },
             {
@@ -81,6 +81,10 @@ return {
             {
                 "<leader>tR", "<cmd>:Telescope resume<cr>",
                 desc = "Telescope Resume",
+            },
+            {
+                "<leader>tq", "<cmd>:Telescope quickfixhistory<cr>",
+                desc = "Telescope Quickfix history",
             },
         },
         init = function(_, opts)
@@ -133,11 +137,11 @@ return {
                             ["<C-p>"] = layout.toggle_preview,
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
-                            ["<C-d>"] = false,
-                            ["<C-u>"] = false,  -- use default <C-u> behavior to clear prompt
+                            ["<C-d>"] = actions.results_scrolling_down,
+                            ["<C-u>"] = actions.results_scrolling_up,
                             ["<space>"] = actions.toggle_selection,
-                            -- ["<tab>"] = false,  -- disable: select and go next
-                            -- ["<S-tab>"] = false,  -- disable: select and go prev
+                            ["<tab>"] = false,  -- disable: select and go next
+                            ["<S-tab>"] = false,  -- disable: select and go prev
                         },
                         i = {
                             -- ["<Down>"] = actions.cycle_history_next,
