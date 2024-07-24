@@ -22,10 +22,10 @@ return {
             signcolumn = true,
             signs = {
                 add = {
-                    text = "▎",
+                    text = "┆",
                 },
                 change = {
-                    text = "▎",
+                    text = "┆",
                 },
                 delete = {
                     text = "▁",
@@ -34,10 +34,10 @@ return {
                     text = "▔",
                 },
                 changedelete = {
-                    text = "▎",
+                    text = "┆",
                 },
                 untracked = {
-                    text = "▎",
+                    text = "┆",
                 },
             },
         },
