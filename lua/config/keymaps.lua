@@ -157,3 +157,10 @@ map("n", "<C-h>", "<C-w>h", {
 map("n", "<C-l>", "<C-w>l", {
     desc = "Move to right split",
 })
+
+map("n", "<F2>", ":cnext<cr>", {
+    desc = "goto next item in qlist",
+})
+map("n", "<S-F2>", ":cprevious<cr>", {
+    desc = "goto previous item in qlist",
+})
