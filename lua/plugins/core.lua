@@ -477,31 +477,31 @@ return {
         "ThePrimeagen/refactoring.nvim",
         keys = {
             {
-                "<leader>rf",
+                "<leader>Rf",
                 ":Refactor extract ",
                 desc = "Refactor: extract to Function...",
                 mode = { "x" },
             },
             {
-                "<leader>rv",
+                "<leader>Rv",
                 ":Refactor extract_var ",
                 desc = "Refactor: extract to Var...",
                 mode = { "x" },
             },
             {
-                "<leader>ri",
+                "<leader>Ri",
                 ":Refactor inline_var",
                 desc = "Refactor: Inline assigned value",
                 mode = { "n", "x" },
             },
             {
-                "<leader>rb",
+                "<leader>Rb",
                 ":Refactor extract_block ",
                 desc = "Refactor: extract Block as function...",
                 mode = { "n", "x" },
             },
             {
-                "<leader>rr",
+                "<leader>Rr",
                 function()
                     require("refactoring").select_refactor()
                 end,
@@ -535,6 +535,38 @@ return {
         --     show_success_message = false, -- shows a message with information about the refactor on success
         --                                   -- i.e. [Refactor] Inlined 3 variable occurrences
         -- },
+    },
+    {
+        "mangelozzi/rgflow.nvim",
+        -- enabled = false,
+        dependencies = {
+            "junegunn/fzf",
+        },
+        keys = {
+            { "<leader>rg", function() require('rgflow').open_cword_path() end, desc = "Rgflow Current Word", mode = { "n" }, },
+            { "<leader>rg", function() require('rgflow').open_visual() end, desc = "Rgflow Selection", mode = { "x" }, },
+            { "<leader>rr", function() require('rgflow').open_again() end, desc = "Rgflow Resume", mode = { "n" }, },
+            { "<leader>rh", function() require('rgflow').show_rg_help() end, desc = "Rgflow Help", mode = { "n" }, },
+        },
+        opts = {
+            -- Set the default rip grep flags and options for when running a search via
+            -- RgFlow. Once changed via the UI, the previous search flags are used for 
+            -- each subsequent search (until Neovim restarts).
+            cmd_flags = "--smart-case --fixed-strings",
+
+            -- Mappings to trigger RgFlow functions
+            default_trigger_mappings = false,
+            -- These mappings are only active when the RgFlow UI (panel) is open
+            default_ui_mappings = true,
+            -- QuickFix window only mapping
+            default_quickfix_mappings = false,
+
+            quickfix = {
+                open_qf_cmd_or_func = "botright copen", -- Open the quickfix window across the full bottom edge
+            },
+
+            new_list_always_appended = true,  -- preserve quick fix history
+        },
     },
     {
         'kevinhwang91/nvim-bqf',
