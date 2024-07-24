@@ -206,29 +206,31 @@ return {
                 group = vim.g.icons_enabled and "" or "+",
                 separator = "",
             },
-            triggers_nowait = {
-                -- marks
-                "`",
-                "'",
-                "g`",
-                "g'",
-                -- registers
-                -- '"',
-                -- "<c-r>",
-                -- spelling
-                "z=",
-            },
+            -- triggers_nowait = {
+            --     -- marks
+            --     "`",
+            --     "'",
+            --     "g`",
+            --     "g'",
+            --     -- registers
+            --     -- '"',
+            --     -- "<c-r>",
+            --     -- spelling
+            --     "z=",
+            -- },
             --   disable = { filetypes = { "TelescopePrompt" } },
         },
         config = function(_, opts)
             local wk = require("which-key")
             wk.setup(opts)
-
-            wk.register({["<leader>f"] = { name = "+Leaderf" }})
-            wk.register({["<leader>g"] = { name = "+Git" }})
-            wk.register({["<leader>l"] = { name = "+Lsp" }})
-            wk.register({["<leader>s"] = { name = "+Session" }})
-            wk.register({["<leader>t"] = { name = "+Telescope" }})
+            wk.add({
+                { "<leader>f", group = "Leaderf" },
+                { "<leader>g", group = "Git" },
+                { "<leader>l", group = "Lsp" },
+                { "<leader>s", group = "Session" },
+                { "<leader>t", group = "Telescope" },
+                { "m", group = "Mark" },
+            })
         end,
     },
     {
