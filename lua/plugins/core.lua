@@ -173,6 +173,9 @@ return {
         end,
     },
     {
+        "kevinhwang91/nvim-hlslens",
+    },
+    {
         "mrjones2014/smart-splits.nvim",
         event = "VeryLazy",
     },
