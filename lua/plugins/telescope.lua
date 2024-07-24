@@ -206,13 +206,13 @@ return {
     --     end
     -- },
     {
-        "folke/persistence.nvim",
-        event = "BufReadPre", -- this will only start session saving when an actual file was opened
+        "rmagatti/auto-session",
         opts = {
-            dir = vim.fn.stdpath("data") .. "/sessions/", -- directory where session files are saved
-            branch = false, -- use git branch in session name
-            need = 2, -- avoid too much sessions for editing single file
-        },
+            auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/", -- directory where session files are saved
+            auto_session_suppress_dirs = {
+                "C:\\App\\bin",
+            },
+        },        
     },
     {
         "JoseConseco/telescope_sessions_picker.nvim",
