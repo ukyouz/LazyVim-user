@@ -27,13 +27,13 @@ return {
                 "<leader>tc", "",
                 callback = function()
                     local tb = require('telescope.builtin')
-                    
+
                     local cword = vim.fn.escape(H.get_visual_selection(), "[]()*+.$^")
                     tb.live_grep({
                         default_text = cword,
                         file_encoding = "sjis",
                     })
-                    
+
                     -- tb.grep_string({
                     --     search = H.get_visual_selection(),
                     --     file_encoding = "sjis",
@@ -210,13 +210,37 @@ return {
     --     end
     -- },
     {
-        "folke/persistence.nvim",
+        "ukyouz/persistence.nvim",
+        branch = "dev",
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
         opts = {
             dir = vim.fn.stdpath("data") .. "/sessions/", -- directory where session files are saved
             branch = false, -- use git branch in session name
             need = 2, -- avoid too much sessions for editing single file
+            path_sep = "+", -- path separator
         },
+        config = function(_, opts)
+            require("persistence").setup(opts)
+            H.augroup("CleanUpWindow", {
+                {
+                    events = { "User" },
+                    opts = {
+                        pattern = { "PersistenceSavePre" },
+                        callback = function()
+                            if vim.fn.exists(':NERDTreeClose') > 0 then
+                                vim.cmd("NERDTreeClose")
+                            end
+                            if vim.fn.exists(':AerialClose') > 0 then
+                                vim.cmd("AerialClose")
+                            end
+                            if H.has_plugin "rgflow" then
+                                require("rgflow").close()
+                            end
+                        end,
+                    }
+                }
+            })
+        end,
     },
     {
         "ukyouz/telescope_sessions_picker.nvim",
