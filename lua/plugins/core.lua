@@ -180,6 +180,22 @@ return {
         event = "VeryLazy",
     },
     {
+        "ukyouz/fontsize.nvim",
+        branch = "dev",
+        keys = {
+            { "<c-f12>", "<cmd>:FontIncrease<cr>" },
+            { "<c-f11>", "<cmd>:FontDecrease<cr>" },
+            { "<c-f10>", "<cmd>:FontReset<cr>" },
+        },
+        init = function()
+            local opts = {
+                font = "FiraCode Nerd Font",
+                default = 10,
+            }
+            require("fontsize").init(opts)
+        end,
+    },
+    {
         "folke/which-key.nvim",
         opts = {
             icons = {
