@@ -219,7 +219,8 @@ return {
         },        
     },
     {
-        "JoseConseco/telescope_sessions_picker.nvim",
+        "ukyouz/telescope_sessions_picker.nvim",
+        branch = "dev/improve_restore_session",
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
