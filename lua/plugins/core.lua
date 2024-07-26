@@ -336,6 +336,7 @@ return {
                 ".h",
                 ".hh",
             }
+            vim.g.Cdf_CacheDirectory = vim.fn.stdpath("data") .. "/cdf_cache"
             vim.api.nvim_set_keymap("n", "<leader>rd", ":<C-R>=printf('CdfCalculateToken %s', expand('<cword>'))<CR><CR>", {
                 desc = "Reveal definition",
                 noremap = false,
