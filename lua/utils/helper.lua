@@ -1,6 +1,15 @@
 
 local helper = {}
 
+function table.contains(table, element)
+    for _, value in pairs(table) do
+      if value == element then
+        return true
+      end
+    end
+    return false
+end
+
 function helper.has_plugin (plugin)
     local lazy_config_avail, lazy_config = pcall(require, "lazy.core.config")
     return lazy_config_avail and lazy_config.plugins[plugin] ~= nil
