@@ -265,21 +265,26 @@ return {
     {
         "wellle/context.vim",
         event = "BufEnter",
+        init = function()
+            vim.g.context_add_autocmds = 0
+        end,
         config = function()
-            local group = vim.api.nvim_create_augroup("context_au", {
-                clear = true,
-            })
-            vim.api.nvim_create_autocmd({
-                "BufEnter",
-            }, {
-                pattern = {
-                    "term://*",
-                    "term://*toggleterm#*",
-                },
-                desc = "Enable context.vim for current buffer",
-                group = group,
-                command = "ContextDisableWindow",
-            })
+            -- disable CursorMoved autocmd to reduce lag
+            vim.cmd([[
+                autocmd VimEnter     * ContextActivate
+                autocmd BufAdd       * call context#update('BufAdd')
+                autocmd BufEnter     * if &buftype != 'prompt' && &buftype != 'terminal' | call context#update('BufEnter') | endif
+                "autocmd CursorMoved  * call context#update('CursorMoved')
+                autocmd VimResized   * call context#update('VimResized')
+                autocmd CursorHold   * call context#update('CursorHold')
+                autocmd User GitGutter call context#update('GitGutter')
+                autocmd OptionSet number,relativenumber,numberwidth,signcolumn,tabstop,list
+                            \          call context#update('OptionSet')
+
+                if exists('##WinScrolled')
+                    autocmd WinScrolled * call context#update('WinScrolled')
+                endif
+            ]])
         end,
     },
     {
