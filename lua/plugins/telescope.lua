@@ -128,7 +128,7 @@ return {
                     },
                     path_display = {
                         "smart",
-                        "shorten",
+                        -- "shorten",  -- foldername with only the first char
                         "truncate",
                     },
                     mappings = {
@@ -140,8 +140,6 @@ return {
                             ["<C-d>"] = actions.results_scrolling_down,
                             ["<C-u>"] = actions.results_scrolling_up,
                             ["<space>"] = actions.toggle_selection,
-                            ["<tab>"] = false,  -- disable: select and go next
-                            ["<S-tab>"] = false,  -- disable: select and go prev
                         },
                         i = {
                             -- ["<Down>"] = actions.cycle_history_next,
@@ -172,6 +170,16 @@ return {
                             end,
                         },
                     }
+                },
+                pickers = {
+                    buffers = {
+                        mappings = {
+                            n = {
+                                ["<M-d>"] = false, -- change delete_buffer keymap to `d`
+                                ["d"] = actions.delete_buffer,
+                            },
+                        },
+                    },
                 },
             }
             if H.is_windows() then
