@@ -8,10 +8,10 @@ return {
             desc = "Find gtags Definition",
             noremap = false,
         },
-        {
-            "<leader>p", "<cmd>:LeaderfFile<cr>",
-            desc = "Find Files", noremap = false,
-        },
+        -- {
+        --     "<leader>p", "<cmd>:LeaderfFile<cr>",
+        --     desc = "Find Files", noremap = false,
+        -- },
         {
             "<leader>ft", "<cmd>:Leaderf gtags --current-buffer<cr>",
             desc = "Find buffer Tag", noremap = false,
@@ -93,7 +93,7 @@ return {
         vim.g.Lf_GtagsAutoUpdate = true
         vim.g.Lf_GtagsStoreInProject = 1  -- temp workaround for telescope-gtags to work
 
-        vim.g.Lf_ShortcutF = "<leader>p"  -- to avoid <leader>f open LeaderfFile picker
+        vim.g.Lf_ShortcutF = ""  -- to avoid <leader>f open LeaderfFile picker
         vim.g.Lf_ShortcutB = "<leader>fb"  -- to avoid <leader>b open LeaderBuffer picker
         vim.g.Lf_NeedCacheTime = 1
         vim.g.Lf_PopupColorscheme = 'onedark'
