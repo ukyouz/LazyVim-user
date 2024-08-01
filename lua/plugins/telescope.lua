@@ -71,7 +71,11 @@ return {
             --     desc = "Telescope References (LSP)",
             -- },
             {
-                "<leader>tl", ":Telescope live_grep file_encoding=sjis default_text=",
+                "<leader>tl", ":Telescope current_buffer_fuzzy_find file_encoding=cp932<cr>",
+                desc = "Telescope buffer Lines",
+            },
+            {
+                "<leader>tw", ":Telescope live_grep file_encoding=sjis default_text=",
                 desc = "Telescope Live grep",
             },
             {
