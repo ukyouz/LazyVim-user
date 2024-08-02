@@ -53,16 +53,18 @@ return {
         keys = {
             {
                 "<leader>ls",
-                "",
-                callback = function()
+                function()
                     require("aerial").toggle()
                 end,
                 desc = "List Symbols outline",
-                -- maps.n["<leader>lS"] = { , desc = "Symbols outline" }
             },
         },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
         opts = {
-            attach_mode = "global",
+            attach_mode = "window",
             backends = {
                 "lsp",
                 "treesitter",
@@ -72,9 +74,9 @@ return {
             layout = {
                 min_width = 28,
             },
-            disable_max_lines = 50000,
+            -- disable_max_lines = 50000,
             show_guides = true,
-            -- filter_kind = false,
+            filter_kind = false,
             guides = {
                 mid_item = "├ ",
                 last_item = "└ ",
