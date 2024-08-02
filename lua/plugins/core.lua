@@ -281,9 +281,9 @@ return {
                 autocmd OptionSet number,relativenumber,numberwidth,signcolumn,tabstop,list
                             \          call context#update('OptionSet')
 
-                if exists('##WinScrolled')
-                    autocmd WinScrolled * call context#update('WinScrolled')
-                endif
+                "if exists('##WinScrolled')
+                "    autocmd WinScrolled * call context#update('WinScrolled')
+                "endif
             ]])
         end,
     },
