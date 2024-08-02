@@ -1,4 +1,70 @@
 return {
+    {
+        "junegunn/fzf.vim",
+        dependencies = {
+            "junegunn/fzf",
+        },
+        keys = {
+            {"<leader>p", "<cmd>:FzfGFiles<cr>",
+                desc = "Fzf Files",
+                noremap = false,
+            },
+            {
+                "<leader>ft", "<cmd>:FzfBTags<cr>",
+                desc = "Find buffer Tag", noremap = false,
+            },
+            {
+                "<leader>fl", "<cmd>:FzfLines<cr>",
+                desc = "Find buffer Lines", noremap = false,
+            },
+            {
+                "<leader>fc", ":<c-r>=printf('FzfRg %s', expand('<cword>'))<cr><cr>",
+                desc = "Find Current word (rg)",
+                noremap = false,
+            },
+            {
+                "<S-F5>", function()
+                    local cmd = "gtags --incremental"
+                    print(vim.fn.printf("running [%s]...", cmd))
+                    vim.fn.jobstart(
+                        cmd,
+                        {
+                            on_exit = function(jobid, exit_code, evt_type) 
+                                if exit_code == 0 then
+                                    print(vim.fn.printf("[%s] done.", cmd))
+                                else
+                                    print(vim.fn.printf("[%s] Error!", cmd))
+                                end
+                            end,
+                            on_stdout = function(cid, data, name)
+                                print(data[1])
+                            end,
+                            on_stderr = function(cid, data, name)
+                                if data[1] ~= "" then
+                                    print("Error:" .. data[1])
+                                end
+                            end,
+                        }
+                    )
+                end,
+            },
+        },
+        init = function()
+            vim.cmd("let $FZF_DEFAULT_OPTS = '--reverse'")
+            vim.g.fzf_layout = {
+                window = {
+                    width = 0.8,
+                    height = 1
+                }
+            }
+            vim.g.fzf_vim = {
+                command_prefix = "Fzf",
+                preview_window = {},
+                -- tags_command = "gtags -i",
+                -- grep_multi_line = 1,
+            }
+        end,
+    },
   {
     "Yggdroot/LeaderF",
     event = "VimEnter",
