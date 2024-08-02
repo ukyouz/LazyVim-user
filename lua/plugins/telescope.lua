@@ -20,15 +20,16 @@ return {
             --     desc = "Telescope query workspace Tags",
             -- },
             {
-                "<leader>tc", "<cmd>:Telescope grep_string file_encoding=sjis<cr>",
+                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string file_encoding=sjis<cr>",
                 desc = "Telescope Current word",
             },
             {
-                "<leader>tc", "",
-                callback = function()
+                "<leader>tc",
+                function()
                     local tb = require('telescope.builtin')
-
+                    
                     local cword = vim.fn.escape(H.get_visual_selection(), "[]()*+.$^")
+                    vim.fn.setreg("/", cword)
                     tb.live_grep({
                         default_text = cword,
                         file_encoding = "sjis",
@@ -144,6 +145,11 @@ return {
                             ["<C-d>"] = actions.results_scrolling_down,
                             ["<C-u>"] = actions.results_scrolling_up,
                             ["<space>"] = actions.toggle_selection,
+                            ["<Esc>"] = function(_bufnr)
+                                actions.close(_bufnr)
+                                -- clear highlight when cancel
+                                vim.cmd("nohlsearch")
+                            end,
                         },
                         i = {
                             -- ["<Down>"] = actions.cycle_history_next,
@@ -171,6 +177,8 @@ return {
                                 actions.close(_bufnr)
                                 -- return to normal mode, ugly but it works
                                 vim.api.nvim_feedkeys(H.key"<Esc>", "n", false)
+                                -- clear highlight when cancel
+                                vim.cmd("nohlsearch")
                             end,
                         },
                     }
@@ -287,11 +295,11 @@ return {
                 desc = "Telescope Definitions (Gtags)",
             },
             {
-                "<leader>tr", "<cmd>:Telescope gtags_references file_encoding=cp932 initial_mode=normal<cr>",
+                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=cp932 initial_mode=normal<cr>",
                 desc = "Telescope References (Gtags)",
             },
             {
-                "<leader>ts", "<cmd>:Telescope gtags_symbol_usages file_encoding=cp932 initial_mode=normal<cr>",
+                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=cp932 initial_mode=normal<cr>",
                 desc = "Telescope Symbols (Gtags)",
             },
             {
