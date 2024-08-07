@@ -404,7 +404,7 @@ return {
             vim.g.fzf_layout = {
                 window = {
                     width = 0.8,
-                    height = 1
+                    height = 0.99,
                 }
             }
             vim.g.fzf_vim = {
