@@ -282,6 +282,7 @@ return {
     },
     {
         "ukyouz/telescope-gtags",
+        enabled = vim.fn.executable('gtags'),
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
@@ -305,6 +306,32 @@ return {
             {
                 "<leader>tt", "<cmd>:Telescope gtags_buffer_symbols file_encoding=cp932<cr>",
                 desc = "Telescope buffer Tags (Gtags)",
+            },
+            {
+                "<S-F5>", function()
+                    local cmd = "gtags --incremental"
+                    print(vim.fn.printf("running [%s]...", cmd))
+                    vim.fn.jobstart(
+                        cmd,
+                        {
+                            on_exit = function(jobid, exit_code, evt_type)
+                                if exit_code == 0 then
+                                    print(vim.fn.printf("[%s] done.", cmd))
+                                else
+                                    print(vim.fn.printf("[%s] Error!", cmd))
+                                end
+                            end,
+                            on_stdout = function(cid, data, name)
+                                print(data[1])
+                            end,
+                            on_stderr = function(cid, data, name)
+                                if data[1] ~= "" then
+                                    print("Error:" .. data[1])
+                                end
+                            end,
+                        }
+                    )
+                end,
             },
         },
         config = function()
@@ -335,32 +362,6 @@ return {
                 "<leader>fc", ":<c-r>=printf('FzfRg %s', expand('<cword>'))<cr><cr>",
                 desc = "Find Current word (rg)",
                 noremap = false,
-            },
-            {
-                "<S-F5>", function()
-                    local cmd = "gtags --incremental"
-                    print(vim.fn.printf("running [%s]...", cmd))
-                    vim.fn.jobstart(
-                        cmd,
-                        {
-                            on_exit = function(jobid, exit_code, evt_type)
-                                if exit_code == 0 then
-                                    print(vim.fn.printf("[%s] done.", cmd))
-                                else
-                                    print(vim.fn.printf("[%s] Error!", cmd))
-                                end
-                            end,
-                            on_stdout = function(cid, data, name)
-                                print(data[1])
-                            end,
-                            on_stderr = function(cid, data, name)
-                                if data[1] ~= "" then
-                                    print("Error:" .. data[1])
-                                end
-                            end,
-                        }
-                    )
-                end,
             },
         },
         init = function()
