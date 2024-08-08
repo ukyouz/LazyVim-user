@@ -286,6 +286,7 @@ return {
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
+        ft = { "c", "cpp", "php", },
         keys = {
             {
                 "<leader>tg", "<cmd>:Telescope gtags file_encoding=cp932<cr>",
@@ -338,6 +339,40 @@ return {
             if H.has_plugin "telescope.nvim" then
                 require('telescope').load_extension('gtags')
             end
+
+            H.augroup("AutoUpdateGtags", {
+                {
+                    events = {"BufWritePost", "FileChangedShellPost"},
+                    ft = { "c", "cpp", "php", },
+                    opts = {
+                        callback = function(args)
+                            local file = vim.fn.expand("%:p")
+                            local cmd = {"gtags", "--single-update", file}
+                            -- print(vim.fn.printf("running [%s]...", cmd))
+                            vim.fn.jobstart(
+                                cmd,
+                                {
+                                    on_exit = function(jobid, exit_code, evt_type)
+                                        if exit_code == 0 then
+                                            -- print(vim.fn.printf("[%s] done.", cmd))
+                                        else
+                                            print(vim.fn.printf("[%s] Error!", cmd))
+                                        end
+                                    end,
+                                    on_stdout = function(cid, data, name)
+                                        print(data[1])
+                                    end,
+                                    on_stderr = function(cid, data, name)
+                                        if data[1] ~= "" then
+                                            print("Error:" .. data[1])
+                                        end
+                                    end,
+                                }
+                            )
+                        end,
+                    },
+                },
+            })
         end,
     },
     {
