@@ -16,6 +16,7 @@ convention:
   - revert
   commitScopes: []
   releaseTagGlobPattern: v[0-9]*.[0-9]*.[0-9]*
+  ignoreRegexPattern: "^fixup! "
 changelog:
   commitTypes:
   - feat
