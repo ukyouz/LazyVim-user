@@ -25,7 +25,7 @@ H.augroup("numbertoggle", {
 
 H.augroup("autoreload", {
     {
-        events = {"BufEnter", "CursorHold", "CursorHoldI", "FocusGained"},
+        events = {"BufEnter", "FocusGained"},
         opts = {
             pattern = {"*"},
             desc = "Ensure to load the latest file revision",
@@ -33,7 +33,7 @@ H.augroup("autoreload", {
         },
     },
 })
- 
+
 -- H.augroup("disableLspSemanticHL", {
 --     {
 --         events = {"BufEnter"},
@@ -74,6 +74,19 @@ H.augroup("FixQuickFixEnter", {
         opts = {
             pattern = {"quickfix"},
             command = "nnoremap <buffer> <CR> <CR>",
+        },
+    }
+})
+
+-- update window title (may required slow system call)
+-- only at certain events are triggered
+H.augroup("UpdateTitleString", {
+    {
+        events = {"FocusGained", "FileChangedShell", "DirChanged", "TermLeave"},
+        opts = {
+            callback = function()
+                vim.opt.titlestring = H.get_titlestring()
+            end,
         },
     }
 })

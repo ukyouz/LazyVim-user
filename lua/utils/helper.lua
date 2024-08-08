@@ -56,4 +56,15 @@ function helper.get_visual_selection()
 	end
 end
 
+function helper.get_titlestring()
+    -- use string literal for titlestring to minimize the performance impact
+    local branch = vim.fn.trim(vim.fn.system('git rev-parse --abbrev-ref HEAD 2> NULL'))
+    local pwd = vim.fn.getcwd()
+    if branch ~= "" then
+        return "[" .. branch .. "] " .. pwd
+    else
+        return pwd
+    end
+end
+
 return helper

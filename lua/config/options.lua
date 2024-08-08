@@ -38,7 +38,7 @@ vim.opt.splitright=true
 vim.opt.tabstop=4
 vim.opt.termguicolors = vim.api.nvim_eval("has('gui_vimr')") == 1 or H.is_windows()
 vim.opt.title=true
-vim.opt.titlestring = "%{getcwd()} - NVIM"
+vim.opt.titlestring = H.get_titlestring()
 vim.opt.updatetime=200
 vim.opt.wrap=false
 vim.opt.wrapscan=false
