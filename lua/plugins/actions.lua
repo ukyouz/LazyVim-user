@@ -102,13 +102,6 @@ return {
         end,
     },
     {
-        "bkad/CamelCaseMotion",
-        event = "VeryLazy",
-        init = function()
-            vim.g.camelcasemotion_key = "\\"
-        end,
-    },
-    {
         "ThePrimeagen/refactoring.nvim",
         keys = {
             {
