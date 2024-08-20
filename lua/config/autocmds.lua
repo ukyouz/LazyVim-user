@@ -68,7 +68,7 @@ H.augroup("highlightTrailingWhitespace", {
 -- only at certain events are triggered
 H.augroup("UpdateTitleString", {
     {
-        events = {"FocusGained", "FileChangedShell", "DirChanged", "TermLeave"},
+        events = {"FocusGained", "FileChangedShellPost", "DirChanged", "TermLeave"},
         opts = {
             callback = function()
                 vim.opt.titlestring = H.get_titlestring()
