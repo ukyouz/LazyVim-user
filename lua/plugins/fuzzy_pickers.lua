@@ -418,6 +418,7 @@ return {
     },
   {
     "Yggdroot/LeaderF",
+    enabled = false,
     event = "VimEnter",
     keys = {
         {
