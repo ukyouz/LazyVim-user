@@ -58,7 +58,12 @@ end
 
 function helper.get_titlestring()
     -- use string literal for titlestring to minimize the performance impact
-    local branch = vim.fn.trim(vim.fn.system('git rev-parse --abbrev-ref HEAD 2> NULL'))
+    local branch = ""
+    if helper.is_windows() then
+        branch = vim.fn.trim(vim.fn.system('git rev-parse --abbrev-ref HEAD 2> NUL'))
+    else
+        branch = vim.fn.trim(vim.fn.system('git rev-parse --abbrev-ref HEAD 2> /dev/null'))
+    end
     local pwd = vim.fn.getcwd()
     if branch ~= "" then
         return "[" .. branch .. "] " .. pwd
