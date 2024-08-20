@@ -35,6 +35,7 @@ return {
     },
     {
         "skywind3000/vim-preview",
+        enabled = false,
         ft = {
             "c",
             "cpp",
