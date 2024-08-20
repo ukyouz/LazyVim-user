@@ -5,6 +5,20 @@ return {
             "c",
             "cpp",
         },
+        keys = {
+            {
+                "<leader>rd", ":<C-R>=printf('CdfCalculateToken %s', expand('<cword>'))<CR><CR>",
+                desc = "Reveal definition",
+                noremap = false,
+            },
+            {
+                "<leader>rd", ":<C-U><C-R>=printf('CdfCalculateToken %s', CdfGetVisualSelection())<CR><CR>",
+                mode = "x",
+                desc = "Reveal definition",
+                noremap = false,
+                silent = false,
+            },
+        },
         config = function()
             vim.g.Cdf_SupportSourceExtensions = {
                 ".c",
@@ -17,15 +31,6 @@ return {
                 ".hh",
             }
             vim.g.Cdf_CacheDirectory = vim.fn.stdpath("data") .. "/cdf_cache"
-            vim.api.nvim_set_keymap("n", "<leader>rd", ":<C-R>=printf('CdfCalculateToken %s', expand('<cword>'))<CR><CR>", {
-                desc = "Reveal definition",
-                noremap = false,
-            })
-            vim.api.nvim_set_keymap("x", "<leader>rd", ":<C-U><C-R>=printf('CdfCalculateToken %s', CdfGetVisualSelection())<CR><CR>", {
-                desc = "Reveal definition",
-                noremap = false,
-                silent = false,
-            })
         end,
     },
     {
