@@ -256,6 +256,7 @@ return {
                             if H.has_plugin "rgflow" then
                                 require("rgflow").close()
                             end
+                            vim.cmd("cclose")
                         end,
                     }
                 }
