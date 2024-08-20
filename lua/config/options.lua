@@ -39,9 +39,10 @@ vim.opt.tabstop=4
 vim.opt.termguicolors = vim.api.nvim_eval("has('gui_vimr')") == 1 or H.is_windows()
 vim.opt.title=true
 vim.opt.titlestring = H.get_titlestring()
-vim.opt.updatetime=200
+vim.opt.updatetime=300
 vim.opt.wrap=false
 vim.opt.wrapscan=false
+vim.opt.statuscolumn=" %=%{v:relnum?v:relnum:v:lnum} %s"
 
 -- Turn backup off
 vim.opt.backup=false

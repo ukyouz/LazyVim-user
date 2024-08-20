@@ -188,6 +188,20 @@ return {
                 opts.func_map.pscrolldown = "<D-d>"
             end
             require("bqf").setup(opts)
+
+            H.augroup("resetStatuscolumnToShowIndicator", {
+                {
+                    events = { "BufEnter" },
+                    opts = {
+                        callback = function()
+                            if vim.bo.buftype ~= "quickfix" then
+                                return
+                            end
+                            vim.cmd("setlocal stc=")
+                        end,
+                    },
+                },
+            })
         end,
     },
     {
