@@ -68,9 +68,9 @@ return {
     },
     {
         "wellle/context.vim",
-        event = "BufEnter",
         init = function()
             vim.g.context_add_autocmds = 0
+            vim.g.context_ellipsis_char = '~'
         end,
         config = function()
             -- disable CursorMoved autocmd to reduce lag
@@ -85,10 +85,20 @@ return {
                 autocmd OptionSet number,relativenumber,numberwidth,signcolumn,tabstop,list
                             \          call context#update('OptionSet')
 
-                "if exists('##WinScrolled')
-                "    autocmd WinScrolled * call context#update('WinScrolled')
-                "endif
+                if exists('##WinScrolled')
+                    autocmd WinScrolled * call context#update('WinScrolled')
+                endif
             ]])
+
+            H.augroup("setStatusColumnFormat", {
+                {
+                    events = { "BufAdd" },
+                    opts = {
+                        desc = "Ensure statuscolumn format consistency",
+                        command = "set statuscolumn=" .. vim.opt.statuscolumn:get(),
+                    },
+                },
+            })
         end,
     },
     {
