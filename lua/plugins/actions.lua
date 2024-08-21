@@ -193,8 +193,8 @@ return {
                 {
                     events = { "BufEnter" },
                     opts = {
-                        callback = function()
-                            if vim.bo.buftype ~= "quickfix" then
+                        callback = function(args)
+                            if vim.bo[args.buf].buftype ~= "quickfix" then
                                 return
                             end
                             vim.cmd("setlocal stc=")
