@@ -3,6 +3,9 @@
 -- Add any additional options here
 
 local H = require "utils.helper"
+local O = {
+    statuscolumn = " %=%{v:relnum?v:relnum:v:lnum} %s",
+}
 
 vim.opt.autoindent=true
 vim.opt.autoread=true
@@ -42,7 +45,7 @@ vim.opt.titlestring = H.get_titlestring()
 vim.opt.updatetime=300
 vim.opt.wrap=false
 vim.opt.wrapscan=false
-vim.opt.statuscolumn=" %=%{v:relnum?v:relnum:v:lnum} %s"
+vim.opt.statuscolumn=O.statuscolumn
 
 -- Turn backup off
 vim.opt.backup=false
@@ -106,3 +109,5 @@ function _G.qftf(info)
     return ret
 end
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+
+return O

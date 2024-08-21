@@ -1,4 +1,5 @@
 local H = require "utils.helper"
+local O = require "config.options"
 
 return {
     {
@@ -95,7 +96,9 @@ return {
                     events = { "BufAdd" },
                     opts = {
                         desc = "Ensure statuscolumn format consistency",
-                        command = "set statuscolumn=" .. vim.opt.statuscolumn:get(),
+                        callback = function()
+                            vim.opt.statuscolumn = O.statuscolumn
+                        end,
                     },
                 },
             })
