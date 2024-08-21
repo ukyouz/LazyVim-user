@@ -343,12 +343,12 @@ return {
 
             H.augroup("AutoUpdateGtags", {
                 {
-                    events = {"BufWritePost", "FileChangedShellPost"},
+                    events = {"BufWritePost", "FileWritePost", "FileChangedShellPost"},
                     ft = { "c", "cpp", "php", },
                     opts = {
                         callback = function(args)
-                            local file = vim.fn.expand("%:p")
-                            local cmd = {"gtags", "--single-update", file}
+                            -- args.match stores fullpath of the file
+                            local cmd = {"gtags", "--single-update", args.match}
                             -- print(vim.fn.printf("running [%s]...", cmd))
                             vim.fn.jobstart(
                                 cmd,
