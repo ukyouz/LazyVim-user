@@ -307,6 +307,7 @@ return {
             show_in_active_only = false,
             marks = {
                 Search = { highlight = "IncSearch" },
+                Warn = { highlight = "Number" },
             },
         },
         init = function(_, opts)
