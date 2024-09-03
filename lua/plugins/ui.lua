@@ -83,8 +83,8 @@ return {
         },
         init = function()
             local opts = {
-                font = "FiraCode Nerd Font",
-                default = 10,
+                font = O.fontfamily,
+                default = O.fontsize,
             }
             require("fontsize").init(opts)
         end,

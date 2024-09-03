@@ -5,6 +5,7 @@
 local H = require "utils.helper"
 local O = {
     statuscolumn = " %=%{v:relnum?v:relnum:v:lnum} %s",
+    fontfamily = H.is_windows() and "FiraCode Nerd Font" or "FiraCode Nerd Font Mono",
     fontsize = H.is_windows() and 10 or 12,
 }
 
@@ -15,12 +16,10 @@ vim.opt.cursorline=true
 vim.opt.expandtab=true
 vim.opt.fixendofline=false
 vim.opt.formatoptions="qj" -- -=tc
+vim.opt.guifont = O.fontfamily .. ":h" .. O.fontsize
 if H.is_windows() then
-    vim.opt.guifont = "Fira Code Retina:h" .. O.fontsize
     vim.opt.guifontwide = "メイリオ"
     vim.opt.fileencodings = "cp932,euc-jp,utf-8"
-else
-    vim.opt.guifont = "FiraCode Nerd Font Mono:h" .. O.fontsize
 end
 vim.opt.hlsearch=true
 vim.opt.incsearch=true
