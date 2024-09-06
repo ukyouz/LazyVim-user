@@ -57,6 +57,9 @@ H.augroup("highlightTrailingWhitespace", {
                 if vim.bo[args.buf].buftype == "nofile" then
                     return
                 end
+                if vim.bo[args.buf].buftype == "quickfix" then
+                    return
+                end
                 -- :match ExtraWhitespace /\s\+$/
                 vim.cmd([[highlight ExtraWhitespace ctermfg=red guifg=red ctermbg=red guibg=red]])
                 vim.cmd([[match ExtraWhitespace /\s\+$/]])
