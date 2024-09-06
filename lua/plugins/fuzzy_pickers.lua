@@ -401,7 +401,7 @@ return {
             },
         },
         init = function()
-            vim.cmd("let $FZF_DEFAULT_OPTS = '--reverse'")
+            vim.cmd("let $FZF_DEFAULT_OPTS = '--reverse --bind=" .. O.fzf_binding .. "'")
             vim.g.fzf_layout = {
                 window = {
                     width = 0.8,

@@ -7,6 +7,8 @@ local O = {
     statuscolumn = " %=%{v:relnum?v:relnum:v:lnum} %s",
     fontfamily = H.is_windows() and "FiraCode Nerd Font" or "FiraCode Nerd Font Mono",
     fontsize = H.is_windows() and 10 or 12,
+
+    fzf_binding = "ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:unix-line-discard",
 }
 
 vim.opt.autoindent=true

@@ -1,4 +1,5 @@
 local H = require "utils.helper"
+local O = require "config.options"
 
 return {
     {
@@ -179,6 +180,11 @@ return {
                 func_map = {
                     stogglebuf = "%",
                 },
+                filter = {
+                    fzf = {
+                        extra_opts = {'--bind', 'ctrl-o:toggle-all,' .. O.fzf_binding, '--prompt', '(Fzf)? '},
+                    }
+                }
             }
             if H.is_windows() then
                 opts.func_map.pscrollup = "<A-u>"
