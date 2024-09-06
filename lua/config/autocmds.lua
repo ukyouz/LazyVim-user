@@ -3,6 +3,7 @@
 -- Add any additional autocmds here
 
 local H = require "utils.helper"
+local O = require "config.options"
 
 H.augroup("numbertoggle", {
     {
@@ -75,4 +76,18 @@ H.augroup("UpdateTitleString", {
             end,
         },
     }
+})
+
+
+H.augroup("ResetStatusColumnFormat", {
+    {
+        events = { "FileType" },
+        opts = {
+            pattern = { "qf" },
+            desc = "Ensure statuscolumn format consistency",
+            callback = function(args)
+                vim.cmd("setlocal statuscolumn=")
+            end,
+        },
+    },
 })

@@ -121,18 +121,6 @@ return {
                     autocmd WinScrolled * call context#update('WinScrolled')
                 endif
             ]])
-
-            H.augroup("setStatusColumnFormat", {
-                {
-                    events = { "BufAdd" },
-                    opts = {
-                        desc = "Ensure statuscolumn format consistency",
-                        callback = function()
-                            vim.opt.statuscolumn = O.statuscolumn
-                        end,
-                    },
-                },
-            })
         end,
     },
     {
