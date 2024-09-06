@@ -180,6 +180,14 @@ return {
                 "<s-cr>",
                 "<cmd>Hi{<cr>",
             },
+            {
+                "<PageDown>",
+                "<cmd>Hi]<cr>",
+            },
+            {
+                "<PageUp>",
+                "<cmd>Hi[<cr>",
+            },
         },
         init = function()
             vim.cmd("let HiSet = 'm<cr>'")
