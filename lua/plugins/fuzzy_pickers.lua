@@ -11,10 +11,10 @@ return {
             return vim.version().minor >= 9
         end,
         keys = {
-            {
-                "<leader>p", "<cmd>:Telescope find_files file_encoding=cp932<cr>",
-                desc = "Telescope Files",
-            },
+            -- {
+            --     "<leader>p", "<cmd>:Telescope find_files file_encoding=cp932<cr>",
+            --     desc = "Telescope Files",
+            -- },
             -- {
             --     "<leader>tt", ":Telescope lsp_workspace_symbols file_encoding=cp932 query=",
             --     desc = "Telescope query workspace Tags",
@@ -381,25 +381,25 @@ return {
         dependencies = {
             "junegunn/fzf",
         },
-        keys = {
-            {"<leader>p", "<cmd>:FzfGFiles<cr>",
-                desc = "Fzf Files",
-                noremap = false,
-            },
-            {
-                "<leader>ft", "<cmd>:FzfBTags<cr>",
-                desc = "Find buffer Tag", noremap = false,
-            },
-            {
-                "<leader>fl", "<cmd>:FzfLines<cr>",
-                desc = "Find buffer Lines", noremap = false,
-            },
-            {
-                "<leader>fc", ":<c-r>=printf('FzfRg %s', expand('<cword>'))<cr><cr>",
-                desc = "Find Current word (rg)",
-                noremap = false,
-            },
-        },
+        -- keys = {
+        --     {"<leader>p", "<cmd>:FzfGFiles<cr>",
+        --         desc = "Fzf Files",
+        --         noremap = false,
+        --     },
+        --     {
+        --         "<leader>ft", "<cmd>:FzfBTags<cr>",
+        --         desc = "Find buffer Tag", noremap = false,
+        --     },
+        --     {
+        --         "<leader>fl", "<cmd>:FzfLines<cr>",
+        --         desc = "Find buffer Lines", noremap = false,
+        --     },
+        --     {
+        --         "<leader>fc", ":<c-r>=printf('FzfRg %s', expand('<cword>'))<cr><cr>",
+        --         desc = "Find Current word (rg)",
+        --         noremap = false,
+        --     },
+        -- },
         init = function()
             vim.cmd("let $FZF_DEFAULT_OPTS = '--reverse --bind=" .. O.fzf_binding .. "'")
             vim.g.fzf_layout = {
@@ -418,7 +418,7 @@ return {
     },
   {
     "Yggdroot/LeaderF",
-    enabled = false,
+    -- enabled = false,
     event = "VimEnter",
     keys = {
         {
@@ -426,10 +426,10 @@ return {
             desc = "Find gtags Definition",
             noremap = false,
         },
-        -- {
-        --     "<leader>p", "<cmd>:LeaderfFile<cr>",
-        --     desc = "Find Files", noremap = false,
-        -- },
+        {
+            "<leader>p", "<cmd>:LeaderfFile<cr>",
+            desc = "Find Files", noremap = false,
+        },
         {
             "<leader>ft", "<cmd>:Leaderf gtags --current-buffer<cr>",
             desc = "Find buffer Tag", noremap = false,
@@ -511,7 +511,7 @@ return {
         vim.g.Lf_GtagsAutoUpdate = true
         vim.g.Lf_GtagsStoreInProject = 1  -- temp workaround for telescope-gtags to work
 
-        vim.g.Lf_ShortcutF = ""  -- to avoid <leader>f open LeaderfFile picker
+        vim.g.Lf_ShortcutF = "<leader>p"  -- to avoid <leader>f open LeaderfFile picker
         vim.g.Lf_ShortcutB = "<leader>fb"  -- to avoid <leader>b open LeaderBuffer picker
         vim.g.Lf_NeedCacheTime = 1
         vim.g.Lf_PopupColorscheme = 'onedark'
