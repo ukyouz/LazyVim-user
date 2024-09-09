@@ -237,7 +237,9 @@ return {
         opts = {
             dir = vim.fn.stdpath("data") .. "/sessions/", -- directory where session files are saved
             branch = false, -- use git branch in session name
-            need = 2, -- avoid too much sessions for editing single file
+            -- open a file from context-menu actually triggered open folder and file
+            -- so set to 3 to avoid the case too.
+            need = 3, -- avoid too much sessions for editing single file
             path_sep = "+", -- path separator
         },
         config = function(_, opts)
