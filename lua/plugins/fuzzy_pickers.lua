@@ -119,7 +119,7 @@ return {
                         center = {
                             prompt_position = "top",
                             -- height = 0.99,
-                            width = 0.8,
+                            width = 0.85,
                             anchor = "N",
                             -- mirror = true,
                         },
