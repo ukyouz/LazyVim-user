@@ -317,8 +317,7 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        enabled = vim.fn.executable "git" == 1,
-        event = "VeryLazy",
+        enabled = vim.fn.executable("git"),
         -- ft = "gitcommit",
         keys = {
             -- GitSigns
@@ -356,6 +355,7 @@ return {
                     text = "┆",
                 },
             },
+            max_file_length = 100000,
         },
     },
     {
