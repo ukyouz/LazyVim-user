@@ -12,16 +12,16 @@ return {
             return vim.version().minor >= 9
         end,
         keys = {
+            {
+                "<leader>p", "<cmd>:Telescope find_files file_encoding=" .. O.encoding .. "<cr>",
+                desc = "Telescope Files",
+            },
             -- {
-            --     "<leader>p", "<cmd>:Telescope find_files file_encoding=cp932<cr>",
-            --     desc = "Telescope Files",
-            -- },
-            -- {
-            --     "<leader>tt", ":Telescope lsp_workspace_symbols file_encoding=cp932 query=",
+            --     "<leader>tt", ":Telescope lsp_workspace_symbols file_encoding=" .. O.encoding .. " query=",
             --     desc = "Telescope query workspace Tags",
             -- },
             {
-                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string file_encoding=sjis<cr>",
+                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string file_encoding=" .. O.rg_encoding .. "<cr>",
                 desc = "Telescope Current word",
             },
             {
@@ -33,55 +33,55 @@ return {
                     vim.fn.setreg("/", cword)
                     tb.live_grep({
                         default_text = cword,
-                        file_encoding = "sjis",
+                        file_encoding = O.rg_encoding,
                     })
 
                     -- tb.grep_string({
                     --     search = H.get_visual_selection(),
-                    --     file_encoding = "sjis",
+                    --     file_encoding = O.rg_encoding,
                     -- })
                 end,
                 desc = "Telescope Current word",
                 mode = { "v" },
             },
             {
-                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=cp932<cr>",
+                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Keymaps",
             },
             -- {
-            --     "<leader>tg", "<cmd>:Telescope live_grep file_encoding=cp932<cr>",
+            --     "<leader>tg", "<cmd>:Telescope live_grep file_encoding=" .. O.encoding .. "<cr>",
             --     desc = "Telescope Grep (Live)",
             -- },
             {
-                "<leader>tb", "<cmd>:Telescope buffers file_encoding=cp932<cr>",
+                "<leader>tb", "<cmd>:Telescope buffers file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Buffers",
             },
             {
-                "<leader>th", "<cmd>:Telescope help_tags file_encoding=cp932<cr>",
+                "<leader>th", "<cmd>:Telescope help_tags file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Helps",
             },
             {
-                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=cp932<cr>",
+                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Keymaps",
             },
             -- {
-            --     "<leader>ti", "<cmd>:Telescope lsp_incoming_calls file_encoding=cp932<cr>",
+            --     "<leader>ti", "<cmd>:Telescope lsp_incoming_calls file_encoding=" .. O.encoding .. "<cr>",
             --     desc = "Telescope Incoming calls (LSP)",
             -- },
             -- {
-            --     "<leader>tr", ":Telescope lsp_references file_encoding=cp932 query=",
+            --     "<leader>tr", ":Telescope lsp_references file_encoding=" .. O.encoding .. " query=",
             --     desc = "Telescope References (LSP)",
             -- },
             {
-                "<leader>tl", ":Telescope current_buffer_fuzzy_find file_encoding=cp932<cr>",
+                "<leader>tl", ":Telescope current_buffer_fuzzy_find file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope buffer Lines",
             },
             {
-                "<leader>tw", ":Telescope live_grep file_encoding=sjis default_text=",
+                "<leader>tw", ":Telescope live_grep file_encoding=" .. O.rg_encoding .. " default_text=",
                 desc = "Telescope Live grep",
             },
             {
-                "<leader>tT", "<cmd>:Telescope treesitter file_encoding=cp932<cr>",
+                "<leader>tT", "<cmd>:Telescope treesitter file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Treesitter",
             },
             {
@@ -293,23 +293,23 @@ return {
         ft = { "c", "cpp", "php", },
         keys = {
             {
-                "<leader>tg", "<cmd>:Telescope gtags file_encoding=cp932<cr>",
+                "<leader>tg", "<cmd>:Telescope gtags file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Gtag symbols",
             },
             {
-                "<leader>td", "<cmd>:Telescope gtags_definitions file_encoding=cp932 initial_mode=normal<cr>",
+                "<leader>td", "<cmd>:Telescope gtags_definitions file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Definitions (Gtags)",
             },
             {
-                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=cp932 initial_mode=normal<cr>",
+                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope References (Gtags)",
             },
             {
-                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=cp932 initial_mode=normal<cr>",
+                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Symbols (Gtags)",
             },
             {
-                "<leader>tt", "<cmd>:Telescope gtags_buffer_symbols file_encoding=cp932<cr>",
+                "<leader>tt", "<cmd>:Telescope gtags_buffer_symbols file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope buffer Tags (Gtags)",
             },
             {

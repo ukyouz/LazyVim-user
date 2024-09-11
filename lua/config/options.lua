@@ -8,6 +8,8 @@ local O = {
     fontfamily = H.is_windows() and "FiraCode Nerd Font" or "FiraCode Nerd Font Mono",
     fontsize = H.is_windows() and 10 or 12,
 
+    encoding = H.is_windows() and "cp932" or "utf-8",
+    rg_encoding = H.is_windows() and "sjis" or "utf-8",
     fzf_binding = "ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:unix-line-discard",
 }
 
@@ -28,7 +30,7 @@ vim.opt.incsearch=true
 -- vim.opt.lazyredraw=true
 vim.opt.linespace=2
 vim.opt.list=true
-vim.opt.listchars="tab:⭲ ,trail:·,extends:…,precedes:…,nbsp:×"
+vim.opt.listchars="tab:→ ,trail:·,extends:…,precedes:…,nbsp:×"
 vim.opt.mouse="a"
 vim.opt.number=true
 -- vim.opt.path+=**
