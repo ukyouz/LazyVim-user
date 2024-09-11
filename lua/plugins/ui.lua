@@ -12,6 +12,9 @@ return {
         end,
     },
     {
+        "pangloss/vim-javascript",
+    },
+    {
         "ukyouz/syntax-highlighted-cursor.nvim",
         enabled = function()
             return vim.version().minor >= 9
