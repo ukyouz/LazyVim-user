@@ -286,7 +286,7 @@ return {
     },
     {
         "ukyouz/telescope-gtags",
-        enabled = vim.fn.executable('gtags'),
+        enabled = vim.fn.executable('gtags') and vim.fn.executable("git"),
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
@@ -314,7 +314,7 @@ return {
             },
             {
                 "<S-F5>", function()
-                    local cmd = "gtags --incremental"
+                    local cmd = "git ls-files | gtags --incremental --file -"
                     print(vim.fn.printf("running [%s]...", cmd))
                     vim.fn.jobstart(
                         cmd,
