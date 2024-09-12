@@ -509,14 +509,26 @@ return {
     },
     init = function()
         -- vim.g.Lf_Gtagslabel = "native-pygments"
-        vim.g.Lf_GtagsGutentags = false
-        vim.g.Lf_GtagsAutoGenerate = true
-        vim.g.Lf_GtagsAutoUpdate = true
+        vim.g.Lf_GtagsGutentags = 0
+        vim.g.Lf_GtagsAutoGenerate = 0
+        vim.g.Lf_GtagsAutoUpdate = 0
+        vim.g.Lf_GtagsSource = 2  -- use Lf_GtagsfileCmd
         vim.g.Lf_GtagsStoreInProject = 1  -- temp workaround for telescope-gtags to work
+        vim.g.Lf_GtagsfilesCmd = {
+            ['.sln'] = 'dir /B /S *.c /S *.C /S *.cpp /S *.CPP /S *.h /S *.hh',
+        }
+        vim.g.Lf_RgConfig = {
+            -- '--glob="*.{c,C,cpp,CPP,h,hh,xml,bas}"',
+            '--encoding=sjis',
+            '--trim',
+            '--color=never',
+            -- '--no-config',
+        }
 
         vim.g.Lf_ShortcutF = "<leader>p"  -- to avoid <leader>f open LeaderfFile picker
         vim.g.Lf_ShortcutB = "<leader>fb"  -- to avoid <leader>b open LeaderBuffer picker
         vim.g.Lf_NeedCacheTime = 1
+        vim.g.Lf_RecurseSubmodules = 1
         vim.g.Lf_PopupColorscheme = 'onedark'
         -- vim.g.Lf_StlColorscheme = 'onedark'
         vim.g.Lf_WindowPosition = 'popup'
