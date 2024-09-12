@@ -58,7 +58,7 @@ return {
     },
     {
         -- add surround movement
-        "tpope/vim-surround",
+        "machakann/vim-sandwich",
     },
     {
         -- better comment action
