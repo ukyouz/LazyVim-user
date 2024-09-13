@@ -290,7 +290,7 @@ return {
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
-        ft = { "c", "cpp", "php", },
+        ft = O.gtags_filetyps,
         keys = {
             {
                 "<leader>tg", "<cmd>:Telescope gtags file_encoding=" .. O.encoding .. "<cr>",
@@ -344,12 +344,32 @@ return {
                 require('telescope').load_extension('gtags')
             end
 
+            vim.g._gtags_modified_bufs = {}
             H.augroup("AutoUpdateGtags", {
                 {
-                    events = {"BufWritePost", "FileWritePost", "FileChangedShellPost"},
-                    ft = { "c", "cpp", "php", },
+                    events = {"BufWritePre"},
                     opts = {
                         callback = function(args)
+                            if not table.contains(O.gtags_filetyps, vim.bo[args.buf].buftype) then
+                                return
+                            end
+                            if vim.api.nvim_buf_get_option(args.buf, "modified") then
+                                table.insert(vim.g._gtags_modified_bufs, args.buf)
+                            end
+                        end,
+                    },
+                },
+                {
+                    events = {"BufWritePost", "FileChangedShellPost"},
+                    opts = {
+                        callback = function(args)
+                            if not table.contains(O.gtags_filetyps, vim.bo[args.buf].buftype) then
+                                return
+                            end
+                            if not table.contains(vim.g._gtags_modified_bufs, args.buf) then
+                                return
+                            end
+                            vim.g._gtags_modified_bufs[args.buf] = nil
                             -- args.match stores fullpath of the file
                             local cmd = {"gtags", "--single-update", args.match}
                             -- print(vim.fn.printf("running [%s]...", cmd))
