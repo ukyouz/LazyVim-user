@@ -104,6 +104,13 @@ return {
     },
     {
         "ThePrimeagen/refactoring.nvim",
+        -- vim.iter is only available after NVIM 0.10.1
+        -- temporarily stick to this version unless NVIM 0.10.1 is stable enough for me
+        commit = "d0721874",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
         keys = {
             {
                 "<leader>Rf",
