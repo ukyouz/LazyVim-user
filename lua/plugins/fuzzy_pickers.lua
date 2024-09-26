@@ -344,32 +344,14 @@ return {
                 require('telescope').load_extension('gtags')
             end
 
-            vim.g._gtags_modified_bufs = {}
             H.augroup("AutoUpdateGtags", {
-                {
-                    events = {"BufWritePre"},
-                    opts = {
-                        callback = function(args)
-                            if not table.contains(O.gtags_filetyps, vim.bo[args.buf].buftype) then
-                                return
-                            end
-                            if vim.api.nvim_buf_get_option(args.buf, "modified") then
-                                table.insert(vim.g._gtags_modified_bufs, args.buf)
-                            end
-                        end,
-                    },
-                },
                 {
                     events = {"BufWritePost", "FileChangedShellPost"},
                     opts = {
                         callback = function(args)
-                            if not table.contains(O.gtags_filetyps, vim.bo[args.buf].buftype) then
+                            if not table.contains(O.gtags_filetyps, vim.bo[args.buf].filetype) then
                                 return
                             end
-                            if not table.contains(vim.g._gtags_modified_bufs, args.buf) then
-                                return
-                            end
-                            vim.g._gtags_modified_bufs[args.buf] = nil
                             -- args.match stores fullpath of the file
                             local cmd = {"gtags", "--single-update", args.match}
                             -- print(vim.fn.printf("running [%s]...", cmd))
