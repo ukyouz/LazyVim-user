@@ -100,6 +100,18 @@ return {
         end,
     },
     {
+        "ray-x/lsp_signature.nvim",
+        event = "InsertEnter",
+        opts = {
+            bind = true,
+            handler_opts = {
+                border = "rounded"
+            },
+            hint_enable = false,
+        },
+        config = function(_, opts) require'lsp_signature'.on_attach(opts) end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-buffer",
