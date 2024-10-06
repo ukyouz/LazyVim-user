@@ -19,17 +19,51 @@ end
 map({"n", "x"}, ";", ":", {
     -- silent = false,
 })
-map("n", "*", "<cmd>keepjumps normal!*N<cr>", {
-    noremap = true,
-    desc = "Search forward and highlight current first",
-})
-map("n", "#", "<cmd>keepjumps normal!#N<cr>", {
-    desc = "Search backward and highlight current first",
-})
+map("n", "*",
+    function ()
+        local _wrapscan = vim.opt.wrapscan
+        vim.opt.wrapscan = true
+        -- temparily enable wrapscan so jump always works even at the bottom hit
+        vim.cmd("keepjumps normal!*N")
+        vim.opt.wrapscan = _wrapscan
+        if H.has_plugin "nvim-hlslens" then
+            require('hlslens').start()
+        end
+    end,
+    {
+        noremap = true,
+        desc = "Search forward and highlight current first",
+    }
+)
+map("n", "#",
+    function ()
+        local _wrapscan = vim.opt.wrapscan
+        vim.opt.wrapscan = true
+        -- temparily enable wrapscan so jump always works even at the top hit
+        vim.cmd("keepjumps normal!#N")
+        vim.opt.wrapscan = _wrapscan
+        if H.has_plugin "nvim-hlslens" then
+            require('hlslens').start()
+        end
+    end,
+    {
+        noremap = true,
+        desc = "Search backward and highlight current first",
+    }
+)
 
-map("n", "<C-;>", "<cmd>:noh<cr>", {
-    desc = "Clear highlight",
-})
+map("n", "<C-;>",
+    function ()
+        vim.cmd(":noh")
+        if H.has_plugin "nvim-hlslens" then
+            require('hlslens').stop()
+        end
+    end,
+    {
+        noremap = true,
+        desc = "Clear highlight",
+    }
+)
 
 map("n", "<C-s>", "<cmd>:w<cr>", {
     desc = "Copy to system clipboard",
