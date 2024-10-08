@@ -7,7 +7,6 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        event = "VeryLazy",
         enabled = function()
             return vim.version().minor >= 9
         end,
@@ -115,6 +114,11 @@ return {
                 defaults = {
                     sorting_strategy = "ascending",
                     layout_strategy = "center",
+                    borderchars = {
+                        prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+                        results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+                        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                    },
                     layout_config = {
                         center = {
                             prompt_position = "top",
@@ -275,7 +279,7 @@ return {
         keys = {
             {
                 "<leader>tS", "<cmd>:Telescope sessions_picker<cr>",
-                desc = "Find Session",
+                desc = "Telescope Session",
             },
         },
         config = function()
