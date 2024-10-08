@@ -134,7 +134,7 @@ return {
                 "<leader>Rb",
                 ":Refactor extract_block ",
                 desc = "Refactor: extract Block as function...",
-                mode = { "n", "x" },
+                mode = { "n" },
             },
             {
                 "<leader>Rr",
