@@ -34,6 +34,7 @@ return {
                         end
                         return vim.api.nvim_buf_line_count(bufnr) > 10000
                     end,
+                    additional_vim_regex_highlighting = true,
                 },
                 textobjects = {
                     select = {
