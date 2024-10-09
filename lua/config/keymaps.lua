@@ -91,6 +91,13 @@ map("c", "<C-v>", "", {
     desc = "Paste from system clipboard",
 })
 
+-- match returns pattern position, -1 if not found.
+-- use the two-space count as fold level
+map("n", "zk", "<cmd>:set foldmethod=expr foldminlines=3 foldexpr=(match(getline(v:lnum),'^\\\\s*//*')+1)*(match(getline(v:lnum),'//*')/2+1)<cr>zM:set fdm=manual<cr>", {
+    desc = "Fold comments",
+    silent = true,
+})
+
 -- Session Manager
 if H.has_plugin "neovim-session-manager" then
     map("n", "<leader>sl", "<cmd>SessionManager! load_last_session<cr>", {
