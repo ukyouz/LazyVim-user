@@ -119,17 +119,16 @@ return {
             -- "hrsh7th/cmp-nvim-lsp-signature-help",
             -- "hrsh7th/cmp-path",
         },
-        event = "VeryLazy",
         opts = function(_, opts)
             local cmp = require "cmp"
             -- opts.enabled = function()
             --     if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then return false end
             --     return vim.g.cmp_enabled
             -- end
-            -- opts.window = {
-            --     completion = cmp.config.window.bordered(),
-            --     documentation = cmp.config.window.bordered(),
-            -- }
+            opts.window = {
+                completion = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered(),
+            }
             local lspkind = require("lspkind")
             opts.formatting = {
                 format = lspkind.cmp_format({
