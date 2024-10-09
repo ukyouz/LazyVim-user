@@ -327,7 +327,10 @@ return {
                                 if exit_code == 0 then
                                     print(vim.fn.printf("[%s] done.", cmd))
                                 else
-                                    print(vim.fn.printf("[%s] Error!", cmd))
+                                    print(vim.fn.printf("[%s] Error! Tag files are removed.", cmd))
+                                    os.remove(vim.fn.getcwd() .. "/GPATH")
+                                    os.remove(vim.fn.getcwd() .. "/GRTAGS")
+                                    os.remove(vim.fn.getcwd() .. "/GTAGS")
                                 end
                             end,
                             on_stdout = function(cid, data, name)
