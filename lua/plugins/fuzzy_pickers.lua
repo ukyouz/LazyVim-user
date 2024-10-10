@@ -105,7 +105,7 @@ return {
                     --                                     -- the default case_mode is "smart_case"
                     -- },
                     sessions_picker = {
-                        sessions_dir = vim.fn.stdpath("data") .. "/sessions/",  -- same as '/home/user/.local/share/nvim/sessions'
+                        sessions_dir = O.sessions_dir,
                     }
                 },
                 preview = {
@@ -239,7 +239,7 @@ return {
         branch = "dev",
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
         opts = {
-            dir = vim.fn.stdpath("data") .. "/sessions/", -- directory where session files are saved
+            dir = O.sessions_dir, -- directory where session files are saved
             branch = false, -- use git branch in session name
             -- open a file from context-menu actually triggered open folder and file
             -- so set to 3 to avoid the case too.

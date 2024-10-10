@@ -1,4 +1,5 @@
 local H = require "utils.helper"
+local O = require "config.options"
 
 return {
     {
@@ -158,7 +159,7 @@ return {
                 -- Whether to write current session before quitting Neovim
                 autowrite = false,
                 -- Directory where global sessions are stored (use `''` to disable)
-                directory =  vim.fn.stdpath("data") .. "/sessions", --<"session" subdir of user data directory from |stdpath()|>,
+                directory = O.sessions_dir, --<"session" subdir of user data directory from |stdpath()|>,
                 -- File for local session (use `''` to disable)
                 file = '' -- 'Session.vim',
             })

@@ -11,7 +11,8 @@ local O = {
     encoding = H.is_windows() and "cp932" or "utf-8",
     rg_encoding = H.is_windows() and "sjis" or "utf-8",
     fzf_binding = "ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:unix-line-discard",
-    gtags_filetyps = { "c", "cpp", "php", }
+    gtags_filetyps = { "c", "cpp", "php", },
+    sessions_dir = vim.fn.stdpath("data") .. "/sessions/",
 }
 
 vim.opt.autoindent=true
