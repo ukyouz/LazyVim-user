@@ -20,7 +20,7 @@ return {
             --     desc = "Telescope query workspace Tags",
             -- },
             {
-                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string file_encoding=" .. O.rg_encoding .. "<cr>",
+                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string only_sort_text=true file_encoding=" .. O.rg_encoding .. "<cr>",
                 desc = "Telescope Current word",
             },
             {
@@ -72,11 +72,32 @@ return {
             --     desc = "Telescope References (LSP)",
             -- },
             {
-                "<leader>tl", ":Telescope current_buffer_fuzzy_find file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>tl",
+                function()
+                    require("telescope.builtin").live_grep({
+                        search_dirs = {
+                            "%:p",
+                        },
+                        sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
+                        only_sort_text = true,
+                        default_text = " ",
+                        file_encoding = O.rg_encoding,
+                        on_complete = {
+                            function(args)
+                                -- print(vim.inspect(args))
+                                local p = require("telescope.actions.state").get_current_picker(args.prompt_bufnr)
+                                if p.first_loaded == nil then
+                                    p.first_loaded = true
+                                    require("telescope.actions").to_fuzzy_refine(args.prompt_bufnr)
+                                end
+                            end
+                        },
+                    })
+                end,
                 desc = "Telescope buffer Lines",
             },
             {
-                "<leader>tw", ":Telescope live_grep file_encoding=" .. O.rg_encoding .. " default_text=",
+                "<leader>tw", ":Telescope live_grep only_sort_text=true file_encoding=" .. O.rg_encoding .. " default_text=",
                 desc = "Telescope Live grep",
             },
             {
