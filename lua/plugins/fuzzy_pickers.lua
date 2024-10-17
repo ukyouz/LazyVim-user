@@ -318,23 +318,23 @@ return {
         ft = O.gtags_filetyps,
         keys = {
             {
-                "<leader>tg", "<cmd>:Telescope gtags file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>tg", "<cmd>:Telescope gtags only_sort_text=true file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Gtag symbols",
             },
             {
-                "<leader>td", "<cmd>:Telescope gtags_definitions file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>td", "<cmd>:Telescope gtags_definitions only_sort_text=true file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Definitions (Gtags)",
             },
             {
-                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references only_sort_text=true file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope References (Gtags)",
             },
             {
-                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages only_sort_text=true file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Symbols (Gtags)",
             },
             {
-                "<leader>tt", "<cmd>:Telescope gtags_buffer_symbols file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>tt", "<cmd>:Telescope gtags_buffer_symbols only_sort_text=true file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope buffer Tags (Gtags)",
             },
             {
