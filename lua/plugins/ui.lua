@@ -5,10 +5,25 @@ return {
     {
         "ukyouz/onedark.vim",
         config = function()
-            vim.g.onedark_style = "darker"
+            -- vim.g.onedark_style = "darker"
+            vim.g.enable_semantic_highlight = true
             vim.cmd.colorscheme("onedark")
 
-            vim.cmd([[hi Visual cterm=reverse gui=reverse]])
+            -- vim.cmd([[hi Visual cterm=reverse gui=reverse]])
+            -- local function clampColor(component)
+            --     return math.min(math.max(component, 0), 255)
+            -- end
+
+            -- function tuneColor(color, shift)
+            --     local r = math.floor(color / 0x10000) + shift
+            --     local g = (math.floor(color / 0x100) % 0x100) + shift
+            --     local b = (color % 0x100) + shift
+            --     return clampColor(r) * 0x10000 + clampColor(g) * 0x100 + clampColor(b)
+            -- end
+            -- -- darken the Search background to make cursor visible even at highlighted yellow text
+            -- local hi = vim.api.nvim_get_hl(0, {name = "Search"})
+            -- hi.bg = tuneColor(hi.bg, -50)
+            -- vim.api.nvim_set_hl(0, "Search", hi)
         end,
     },
     {
@@ -22,24 +37,11 @@ return {
         enabled = function()
             return vim.version().minor >= 9
         end,
-        config = function()
-            require("syntax-highlighted-cursor").setup()
-
-            local function clampColor(component)
-                return math.min(math.max(component, 0), 255)
-            end
-
-            function tuneColor(color, shift)
-                local r = math.floor(color / 0x10000) + shift
-                local g = (math.floor(color / 0x100) % 0x100) + shift
-                local b = (color % 0x100) + shift
-                return clampColor(r) * 0x10000 + clampColor(g) * 0x100 + clampColor(b)
-            end
-            -- darken the Search background to make cursor visible even at highlighted yellow text
-            local hi = vim.api.nvim_get_hl(0, {name = "Search"})
-            hi.bg = tuneColor(hi.bg, -50)
-            vim.api.nvim_set_hl(0, "Search", hi)
-        end,
+        opts = {
+            debounce_ms = 50,
+            force_refresh_hack = true,
+            when_cursor_moved = false,
+        },
     },
     {
         "kevinhwang91/nvim-hlslens",
