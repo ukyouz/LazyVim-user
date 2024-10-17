@@ -188,10 +188,6 @@ return {
                 desc = "Mark clear",
             },
             {
-                "<cr>",
-                "<cmd>Hi}<cr>",
-            },
-            {
                 "<s-cr>",
                 "<cmd>Hi{<cr>",
             },
@@ -209,6 +205,19 @@ return {
             vim.cmd("let HiErase = 'm<bs>'")
             vim.cmd("let HiClear = 'm<del>'")
             vim.cmd("let HiSyncMode = 1")
+            H.augroup("AddHighlighterKeymap", {
+                {
+                    events = {"BufEnter"},
+                    opts = {
+                        callback = function()
+                            if vim.bo.buftype == "nofile" then
+                                return
+                            end
+                            vim.cmd("nmap <buffer> <CR> <cmd>Hi}<cr>")
+                        end,
+                    },
+                }
+            })
         end,
     },
     {
