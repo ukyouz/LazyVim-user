@@ -38,9 +38,9 @@ return {
             return vim.version().minor >= 9
         end,
         opts = {
-            debounce_ms = 50,
+            debounce_ms = 70,
             force_refresh_hack = true,
-            when_cursor_moved = false,
+            -- when_cursor_moved = false,
         },
     },
     {
