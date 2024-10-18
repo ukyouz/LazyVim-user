@@ -98,13 +98,10 @@ return {
             { "<c-f11>", "<cmd>:FontDecrease<cr>" },
             { "<c-f10>", "<cmd>:FontReset<cr>" },
         },
-        init = function()
-            local opts = {
-                font = O.fontfamily,
-                default = O.fontsize,
-            }
-            require("fontsize").init(opts)
-        end,
+        opts = {
+            font = O.fontfamily,
+            default = O.fontsize,
+        },
     },
     {
         "folke/todo-comments.nvim",
