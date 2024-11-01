@@ -186,6 +186,7 @@ return {
                 },
                 func_map = {
                     stogglebuf = "%",
+                    filter = H.is_windows() and "<A-q>" or "<D-q>",
                 },
                 filter = {
                     fzf = {
