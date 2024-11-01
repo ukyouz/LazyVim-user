@@ -114,7 +114,8 @@ return {
         }
     },
     {
-        "wellle/context.vim",
+        "ukyouz/context.vim",
+        branch = "imp_perf",
         init = function()
             vim.g.context_add_autocmds = 0
             vim.g.context_ellipsis_char = '~'
@@ -123,7 +124,7 @@ return {
             -- disable CursorMoved autocmd to reduce lag
             vim.cmd([[
                 autocmd VimEnter     * ContextActivate
-                autocmd BufAdd       * call context#update('BufAdd')
+                autocmd BufAdd       * if &buftype != 'prompt' && &buftype != 'terminal' | call context#update('BufAdd') | endif
                 autocmd BufEnter     * if &buftype != 'prompt' && &buftype != 'terminal' | call context#update('BufEnter') | endif
                 "autocmd CursorMoved  * call context#update('CursorMoved')
                 autocmd VimResized   * call context#update('VimResized')
@@ -133,7 +134,7 @@ return {
                             \          call context#update('OptionSet')
 
                 if exists('##WinScrolled')
-                    autocmd WinScrolled * call context#update('WinScrolled')
+                    autocmd WinScrolled * if &buftype != 'prompt' && &buftype != 'terminal' | call context#update('WinScrolled') | endif
                 endif
             ]])
         end,
