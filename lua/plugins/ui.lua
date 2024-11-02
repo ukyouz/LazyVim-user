@@ -35,7 +35,7 @@ return {
     {
         "ukyouz/syntax-highlighted-cursor.nvim",
         enabled = function()
-            return vim.version().minor >= 9
+            return vim.version().minor >= 9 and vim.fn.exists('g:gui_vimr') == 0
         end,
         opts = {
             debounce_ms = 70,
