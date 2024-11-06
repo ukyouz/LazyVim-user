@@ -317,15 +317,15 @@ return {
                 desc = "Telescope Gtag symbols",
             },
             {
-                "<leader>td", "<cmd>:Telescope gtags_definitions only_sort_text=true file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>td", "<cmd>:Telescope gtags_definitions file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Definitions (Gtags)",
             },
             {
-                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references only_sort_text=true file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope References (Gtags)",
             },
             {
-                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages only_sort_text=true file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Symbols (Gtags)",
             },
             {
