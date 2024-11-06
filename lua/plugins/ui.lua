@@ -214,6 +214,9 @@ return {
                             if vim.bo.buftype == "nofile" then
                                 return
                             end
+                            if vim.bo.buftype == "quickfix" then
+                                return
+                            end
                             vim.cmd("nmap <buffer> <CR> <cmd>Hi}<cr>")
                         end,
                     },
