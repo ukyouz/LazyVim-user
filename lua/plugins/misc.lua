@@ -220,6 +220,24 @@ return {
             --         end
             --     end
             -- })
+
+            require('mini.surround').setup({
+                mappings = {
+                    add = 'ys', -- Add surrounding in Normal and Visual modes
+                    delete = 'ds', -- Delete surrounding
+                    find = '', -- Find surrounding (to the right)
+                    find_left = '', -- Find surrounding (to the left)
+                    highlight = '', -- Highlight surrounding
+                    replace = 'cs', -- Replace surrounding
+                    update_n_lines = '', -- Update `n_lines`
+
+                    suffix_last = '', -- Suffix to search with "prev" method
+                    suffix_next = '', -- Suffix to search with "next" method
+                },
+                -- Number of lines within which surrounding is searched
+                n_lines = 9999,
+                search_method = 'cover_or_next',
+            })
         end,
     },
 }
