@@ -204,14 +204,14 @@ return {
                 inside_last = '',
             })
 
-            -- -- jump to next after search for f/F/t/T
-            -- local jump = require('mini.jump')
-            -- jump.setup({
-            --     delay = {
-            --         highlight = 0,
-            --         idle_stop = 10000,
-            --     }
-            -- })
+            -- jump to next after search for f/F/t/T
+            local jump = require('mini.jump')
+            jump.setup({
+                -- delay = {
+                --     highlight = 0,
+                --     idle_stop = 1000,
+                -- }
+            })
             -- vim.keymap.set("n", "<Esc>", "*", {
             --     desc = "Clear mini.jump",
             --     callback = function()
