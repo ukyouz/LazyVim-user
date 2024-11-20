@@ -59,6 +59,7 @@ return {
     {
         -- add surround movement
         "machakann/vim-sandwich",
+        enabled = false,
     },
     {
         -- better comment action
