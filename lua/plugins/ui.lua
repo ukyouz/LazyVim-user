@@ -143,6 +143,12 @@ return {
         "RRethy/vim-illuminate",
         event = "VeryLazy",
         config = function()
+vim.cmd([[
+                hi IlluminatedWordText gui=bold guibg=black cterm=bold
+                hi IlluminatedWordRead gui=bold guibg=black cterm=bold
+                hi IlluminatedWordWrite gui=bold guibg=black cterm=bold
+            ]])
+
             require('illuminate').configure({
                 providers = {
                     -- 'treesitter',
