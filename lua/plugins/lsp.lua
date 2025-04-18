@@ -104,10 +104,18 @@ return {
         event = "InsertEnter",
         opts = {
             bind = true,
+            floating_window = false,
             handler_opts = {
                 border = "rounded"
             },
             hint_enable = false,
+        },
+        keys = {
+            {
+                "<leader>lh",
+                function() require('lsp_signature').toggle_float_win() end,
+                desc = "Hint signature",
+            },
         },
         config = function(_, opts) require'lsp_signature'.on_attach(opts) end,
     },
