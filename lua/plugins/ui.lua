@@ -46,6 +46,7 @@ return {
     },
     {
         "kevinhwang91/nvim-hlslens",
+        enabled = false,
         config = function(opts)
             require("hlslens").setup({
                 build_position_cb = function(plist, _, _, _)
@@ -309,7 +310,7 @@ vim.cmd([[
                         "diagnostics",
                     },
                 },
-                lualine_y = {},
+                -- lualine_y = {},
             },
             inactive_sections = {
                 lualine_b = {},
@@ -339,6 +340,7 @@ vim.cmd([[
     },
     {
         "petertriho/nvim-scrollbar",
+        enabled = false,
         opts = {
             show_in_active_only = false,
             marks = {
