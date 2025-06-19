@@ -386,6 +386,7 @@ return {
     },
     {
         "junegunn/fzf.vim",
+        enabled = false,
         dependencies = {
             "junegunn/fzf",
         },
@@ -426,7 +427,7 @@ return {
     },
   {
     "Yggdroot/LeaderF",
-    -- enabled = false,
+    enabled = false,
     event = "VimEnter",
     keys = {
         {
