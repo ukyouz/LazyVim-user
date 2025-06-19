@@ -240,4 +240,32 @@ return {
             })
         end,
     },
+    {
+        'echasnovski/mini.files',
+        version = '*',
+        keys = {
+            {
+                "<leader>e", "<cmd>:lua MiniFiles.open()<cr>",
+                desc = "Open Explorer",
+                noremap = false,
+            },
+        },
+        opts = {
+            mappings = {
+                close       = '<ESC>',
+                go_in       = 'l',
+                go_in_plus  = '<CR>',
+                go_out      = 'h',
+                go_out_plus = '',
+                mark_goto   = "'",
+                mark_set    = 'm',
+                reset       = '<BS>',
+                reveal_cwd  = '@',
+                show_help   = 'g?',
+                synchronize = '=',
+                trim_left   = '<',
+                trim_right  = '>',
+              },
+        },
+    },
 }

@@ -403,6 +403,7 @@ vim.cmd([[
     {
         "preservim/nerdtree",
         -- cond = false,
+        enabled = false,
         keys = {
             {"<leader>e", "<cmd>:NERDTreeToggle<cr>"},
         },
