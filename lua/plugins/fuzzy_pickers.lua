@@ -214,22 +214,22 @@ return {
             require('telescope').setup(opts)
         end
     },
-    -- {
-    --     "nvim-telescope/telescope-fzf-native.nvim",
-    --     event = "VeryLazy",
-    --     dependencies = {
-    --         "nvim-telescope/telescope.nvim",
-    --     },
-    --     enabled = function()
-    --         return vim.version().minor >= 9
-    --     end,
-    --     build = "make",
-    --     config = function()
-    --         -- To get fzf loaded and working with telescope, you need to call
-    --         -- load_extension, somewhere after setup function:
-    --         require('telescope').load_extension('fzf')
-    --     end
-    -- },
+    {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        enabled = function()
+            return vim.version().minor >= 9
+        end,
+        build = "make",
+        config = function()
+            -- To get fzf loaded and working with telescope, you need to call
+            -- load_extension, somewhere after setup function:
+            require('telescope').load_extension('fzf')
+        end
+    },
     {
         "ukyouz/persistence.nvim",
         branch = "dev",
