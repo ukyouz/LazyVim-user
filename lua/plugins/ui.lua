@@ -144,7 +144,7 @@ return {
         "RRethy/vim-illuminate",
         event = "VeryLazy",
         config = function()
-vim.cmd([[
+            vim.cmd([[
                 hi IlluminatedWordText gui=bold guibg=black cterm=bold
                 hi IlluminatedWordRead gui=bold guibg=black cterm=bold
                 hi IlluminatedWordWrite gui=bold guibg=black cterm=bold
@@ -360,6 +360,7 @@ vim.cmd([[
     {
         "lewis6991/gitsigns.nvim",
         enabled = vim.fn.executable("git"),
+        event = "VeryLazy",
         -- ft = "gitcommit",
         keys = {
             -- GitSigns
