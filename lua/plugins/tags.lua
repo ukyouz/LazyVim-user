@@ -31,6 +31,7 @@ return {
                 ".hh",
             }
             vim.g.Cdf_CacheDirectory = vim.fn.stdpath("data") .. "/cdf_cache"
+            vim.g.Cdf_RecurseSubmodules = true
         end,
     },
     {
