@@ -20,7 +20,7 @@ return {
             --     desc = "Telescope query workspace Tags",
             -- },
             {
-                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string only_sort_text=true file_encoding=" .. O.rg_encoding .. "<cr>",
+                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string only_sort_text=true initial_mode=normal file_encoding=" .. O.rg_encoding .. "<cr>",
                 desc = "Telescope Current word",
             },
             {
@@ -33,6 +33,7 @@ return {
                     tb.live_grep({
                         default_text = cword,
                         file_encoding = O.rg_encoding,
+                        initial_mode = "normal",
                     })
 
                     -- tb.grep_string({
@@ -72,28 +73,7 @@ return {
             --     desc = "Telescope References (LSP)",
             -- },
             {
-                "<leader>tl",
-                function()
-                    require("telescope.builtin").live_grep({
-                        search_dirs = {
-                            "%:p",
-                        },
-                        sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
-                        only_sort_text = true,
-                        default_text = " ",
-                        file_encoding = O.rg_encoding,
-                        on_complete = {
-                            function(args)
-                                -- print(vim.inspect(args))
-                                local p = require("telescope.actions.state").get_current_picker(args.prompt_bufnr)
-                                if p.first_loaded == nil then
-                                    p.first_loaded = true
-                                    require("telescope.actions").to_fuzzy_refine(args.prompt_bufnr)
-                                end
-                            end
-                        },
-                    })
-                end,
+                "<leader>tl", ":Telescope current_buffer_fuzzy_find file_encoding=" .. O.rg_encoding .. "<cr>",
                 desc = "Telescope buffer Lines",
             },
             {
@@ -159,7 +139,7 @@ return {
                     },
                     path_display = {
                         -- "smart",
-                        "shorten",  -- foldername with only the first char
+                        -- "shorten",  -- foldername with only the first char
                         "truncate",
                     },
                     mappings = {
@@ -334,7 +314,7 @@ return {
             },
             {
                 "<S-F5>", function()
-                    local cmd = "git ls-files | gtags --incremental --file -"
+                    local cmd = "git ls-files --recurse-submodules | gtags --incremental --file -"
                     print(vim.fn.printf("running [%s]...", cmd))
                     vim.fn.jobstart(
                         cmd,
