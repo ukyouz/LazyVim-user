@@ -314,7 +314,13 @@ return {
             },
             {
                 "<S-F5>", function()
+                    local pwd, dbpath = require('telescope-gtags').setup_env()
                     local cmd = "git ls-files --recurse-submodules | gtags --incremental --file -"
+                    if H.is_windows() then
+                        os.execute("mkdir " .. dbpath)
+                    else
+                        os.execute("mkdir -p " .. dbpath)
+                    end
                     print(vim.fn.printf("running [%s]...", cmd))
                     vim.fn.jobstart(
                         cmd,
@@ -322,11 +328,14 @@ return {
                             on_exit = function(jobid, exit_code, evt_type)
                                 if exit_code == 0 then
                                     print(vim.fn.printf("[%s] done.", cmd))
+                                    os.execute("mv -f GPATH \"" .. dbpath .."\"")
+                                    os.execute("mv -f GRTAGS \"" .. dbpath .."\"")
+                                    os.execute("mv -f GTAGS \"" .. dbpath .."\"")
                                 else
                                     print(vim.fn.printf("[%s] Error! Tag files are removed.", cmd))
-                                    os.remove(vim.fn.getcwd() .. "/GPATH")
-                                    os.remove(vim.fn.getcwd() .. "/GRTAGS")
-                                    os.remove(vim.fn.getcwd() .. "/GTAGS")
+                                    os.remove(dbpath .. "/GPATH")
+                                    os.remove(dbpath .. "/GRTAGS")
+                                    os.remove(dbpath .. "/GTAGS")
                                 end
                             end,
                             on_stdout = function(cid, data, name)
@@ -342,10 +351,15 @@ return {
                 end,
             },
         },
-        config = function()
-            if H.has_plugin "telescope.nvim" then
-                require('telescope').load_extension('gtags')
-            end
+        opts = {
+            storeInProjectFolder = false,
+            dbPath = vim.fn.stdpath("data") .. "/gtags",
+        },
+        config = function(_, opts)
+            -- if H.has_plugin "telescope.nvim" then
+            --     require('telescope').load_extension('gtags')
+            -- end
+            require('telescope-gtags').setup(opts)
 
             H.augroup("AutoUpdateGtags", {
                 {
