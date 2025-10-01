@@ -51,7 +51,7 @@ H.augroup("autoreload", {
 
 H.augroup("highlightTrailingWhitespace", {
     {
-        events = {"VimEnter", "WinEnter"},
+        events = {"VimEnter", "WinEnter", "BufReadPost"},
         opts = {
             callback = function(args)
                 if vim.bo[args.buf].buftype == "nofile" then

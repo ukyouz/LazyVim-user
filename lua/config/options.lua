@@ -5,11 +5,11 @@
 local H = require "utils.helper"
 local O = {
     statuscolumn = " %=%{v:relnum?v:relnum:v:lnum} %s",
-    fontfamily = H.is_windows() and "Fira Code Retina" or "FiraCode Nerd Font Mono",
+    fontfamily = H.is_windows() and "0xProto Nerd Font Mono" or "FiraCode Nerd Font Mono",
     fontsize = H.is_windows() and 9 or 12,
 
-    encoding = H.is_windows() and "cp932" or "utf-8",
-    rg_encoding = H.is_windows() and "sjis" or "utf-8",
+    encoding = "utf-8",
+    rg_encoding = "utf-8",
     fzf_binding = "ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-f:page-down,ctrl-b:page-up,ctrl-u:unix-line-discard",
     gtags_filetyps = { "c", "cpp", "php", },
     sessions_dir = vim.fn.stdpath("data") .. "/sessions/",
@@ -22,15 +22,15 @@ vim.opt.cursorline=true
 vim.opt.expandtab=true
 vim.opt.fixendofline=false
 vim.opt.formatoptions="qj" -- -=tc
-vim.opt.guifont = O.fontfamily .. ":h" .. O.fontsize
+vim.opt.guifont = O.fontfamily .. ":h" .. O.fontsize .. ":#h-normal"
 if H.is_windows() then
     vim.opt.guifontwide = "メイリオ:h" .. (O.fontsize + 0.5)
-    vim.opt.fileencodings = "cp932,euc-jp,utf-8"
+    vim.opt.fileencodings = "utf-8"
 end
 vim.opt.hlsearch=true
 vim.opt.incsearch=true
 -- vim.opt.lazyredraw=true
-vim.opt.linespace=2
+vim.opt.linespace=4
 vim.opt.list=true
 vim.opt.listchars="tab:→ ,trail:·,extends:…,precedes:…,nbsp:×"
 vim.opt.mouse="a"

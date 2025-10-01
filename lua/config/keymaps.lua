@@ -83,8 +83,8 @@ map("i", "<C-v>", "<esc>\"*p", {
 map("c", "<C-v>", "", {
     callback = function()
         local text = vim.fn.getreg("*")
-        local cword = vim.fn.escape(text, " []()*+.$^")
-        vim.fn.setreg("v", string.gsub(cword, "\n", ""))
+        -- local cword = vim.fn.escape(text, " []()*+.$^")
+        vim.fn.setreg("v", string.gsub(text, "\n", ""))
         vim.api.nvim_feedkeys(H.key"<C-r>", "n", false)
         vim.api.nvim_feedkeys("v", "n", false)
     end,
