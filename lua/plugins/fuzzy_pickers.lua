@@ -119,9 +119,9 @@ return {
                     sorting_strategy = "ascending",
                     layout_strategy = "center",
                     borderchars = {
-                        prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-                        results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-                        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+                        prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+                        results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+                        preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
                     },
                     layout_config = {
                         center = {
@@ -137,14 +137,16 @@ return {
                             -- width = 0.8,
                             anchor = "N",
                             mirror = true,
-                            preview_cutoff = 0, -- always show preview event at small visible region
+                            -- preview_cutoff = 0, -- always show preview event at small visible region
                         },
                     },
                     path_display = {
                         -- "smart",
                         -- "shorten",  -- foldername with only the first char
                         "truncate",
+                        "filename_first",
                     },
+                    winblend = 10, -- avoid picker being too transparent
                     mappings = {
                         n = {
                             ["p"] = layout.toggle_preview,
