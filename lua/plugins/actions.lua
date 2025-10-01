@@ -27,11 +27,11 @@ return {
             local wk = require("which-key")
             wk.setup(opts)
             wk.add({
-                { "<leader>f", group = "Leaderf" },
+                -- { "<leader>f", group = "Leaderf" },
                 { "<leader>g", group = "Git" },
                 { "<leader>l", group = "Lsp" },
                 { "<leader>s", group = "Session" },
-                { "<leader>t", group = "Telescope" },
+                { "<leader>f", group = "Telescope" },
                 { "m", group = "Mark" },
             })
         end,

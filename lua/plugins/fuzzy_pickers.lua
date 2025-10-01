@@ -16,80 +16,83 @@ return {
                 desc = "Telescope Files",
             },
             -- {
-            --     "<leader>tt", ":Telescope lsp_workspace_symbols file_encoding=" .. O.encoding .. " query=",
+            --     "<leader>ft", ":Telescope lsp_workspace_symbols file_encoding=" .. O.encoding .. " query=",
             --     desc = "Telescope query workspace Tags",
             -- },
             {
-                "<leader>tc", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope grep_string only_sort_text=true initial_mode=normal file_encoding=" .. O.rg_encoding .. "<cr>",
-                desc = "Telescope Current word",
-            },
-            {
-                "<leader>tc",
+                "<leader>fc",
                 function()
                     local tb = require('telescope.builtin')
-
-                    local cword = vim.fn.escape(H.get_visual_selection(), "[]()*+.$^")
+                    local cword = vim.fn.expand("<cword>")
+                    if vim.fn.mode() == "v" then
+                        cword = vim.fn.escape(H.get_visual_selection(), "[]()*+.$^")
+                    end
+                    vim.opt.hlsearch = true
                     vim.fn.setreg("/", cword)
                     tb.live_grep({
                         default_text = cword,
                         file_encoding = O.rg_encoding,
+                        only_sort_text = true,
                         initial_mode = "normal",
+                        additional_args = {"--max-columns=500"},
+                        previewer = false,
                     })
-
                     -- tb.grep_string({
-                    --     search = H.get_visual_selection(),
                     --     file_encoding = O.rg_encoding,
+                    --     only_sort_text = true,
+                    --     initial_mode = "normal",
+                    --     additional_args = {"--max-columns=500"},
                     -- })
                 end,
                 desc = "Telescope Current word",
-                mode = { "v" },
+                mode = {"n", "v"},
             },
             {
-                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>fk", "<cmd>:Telescope keymaps file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Keymaps",
             },
             -- {
-            --     "<leader>tg", "<cmd>:Telescope live_grep file_encoding=" .. O.encoding .. "<cr>",
+            --     "<leader>fg", "<cmd>:Telescope live_grep file_encoding=" .. O.encoding .. "<cr>",
             --     desc = "Telescope Grep (Live)",
             -- },
             {
-                "<leader>tb", "<cmd>:Telescope buffers file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>fb", "<cmd>:Telescope buffers file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Buffers",
             },
             {
-                "<leader>th", "<cmd>:Telescope help_tags file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>fh", "<cmd>:Telescope help_tags file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Helps",
             },
             {
-                "<leader>tk", "<cmd>:Telescope keymaps file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>fk", "<cmd>:Telescope keymaps file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Keymaps",
             },
             -- {
-            --     "<leader>ti", "<cmd>:Telescope lsp_incoming_calls file_encoding=" .. O.encoding .. "<cr>",
+            --     "<leader>fi", "<cmd>:Telescope lsp_incoming_calls file_encoding=" .. O.encoding .. "<cr>",
             --     desc = "Telescope Incoming calls (LSP)",
             -- },
             -- {
-            --     "<leader>tr", ":Telescope lsp_references file_encoding=" .. O.encoding .. " query=",
+            --     "<leader>fr", ":Telescope lsp_references file_encoding=" .. O.encoding .. " query=",
             --     desc = "Telescope References (LSP)",
             -- },
             {
-                "<leader>tl", ":Telescope current_buffer_fuzzy_find file_encoding=" .. O.rg_encoding .. "<cr>",
+                "<leader>fl", ":Telescope current_buffer_fuzzy_find file_encoding=" .. O.rg_encoding .. "<cr>",
                 desc = "Telescope buffer Lines",
             },
             {
-                "<leader>tw", ":Telescope live_grep only_sort_text=true file_encoding=" .. O.rg_encoding .. " default_text=",
+                "<leader>fw", ":Telescope live_grep only_sort_text=true file_encoding=" .. O.rg_encoding .. " default_text=",
                 desc = "Telescope Live grep",
             },
             {
-                "<leader>tT", "<cmd>:Telescope treesitter file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>fT", "<cmd>:Telescope treesitter file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Treesitter",
             },
             {
-                "<leader>tR", "<cmd>:Telescope resume<cr>",
+                "<leader>fR", "<cmd>:Telescope resume<cr>",
                 desc = "Telescope Resume",
             },
             {
-                "<leader>tq", "<cmd>:Telescope quickfixhistory<cr>",
+                "<leader>fq", "<cmd>:Telescope quickfixhistory<cr>",
                 desc = "Telescope Quickfix history",
             },
         },
@@ -274,7 +277,7 @@ return {
         },
         keys = {
             {
-                "<leader>tS", "<cmd>:Telescope sessions_picker<cr>",
+                "<leader>fS", "<cmd>:Telescope sessions_picker<cr>",
                 desc = "Telescope Session",
             },
         },
@@ -293,23 +296,23 @@ return {
         ft = O.gtags_filetyps,
         keys = {
             {
-                "<leader>tg", "<cmd>:Telescope gtags only_sort_text=true file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>fg", "<cmd>:Telescope gtags only_sort_text=true file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope Gtag symbols",
             },
             {
-                "<leader>td", "<cmd>:Telescope gtags_definitions file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>fd", "<cmd>:Telescope gtags_definitions file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Definitions (Gtags)",
             },
             {
-                "<leader>tr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>fr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope References (Gtags)",
             },
             {
-                "<leader>ts", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>fs", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Symbols (Gtags)",
             },
             {
-                "<leader>tt", "<cmd>:Telescope gtags_buffer_symbols only_sort_text=true file_encoding=" .. O.encoding .. "<cr>",
+                "<leader>ft", "<cmd>:Telescope gtags_buffer_symbols only_sort_text=true file_encoding=" .. O.encoding .. "<cr>",
                 desc = "Telescope buffer Tags (Gtags)",
             },
             {
