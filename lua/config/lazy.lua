@@ -1,5 +1,15 @@
 local H = require("utils.helper")
 
+local old_stdpath = vim.fn.stdpath
+vim.fn.stdpath = function(value)
+    if H.is_windows() then
+        if value == "data" then
+            return "C:\\Work\\nvim-data"
+        end
+    end
+    return old_stdpath(value)
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
