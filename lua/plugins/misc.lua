@@ -150,13 +150,12 @@ return {
         'echasnovski/mini.nvim',
         config = function()
             local header_art = [[
-       _       ____   _   _  U _____ u _   _     ____
-    U |"| u U /"___| |'| |'| \| ___"|/| \ |"| U /"___|u
-   _ \| |/  \| | u  /| |_| |\ |  _|" <|  \| |>\| |  _ /
-  | |_| |_,-.| |/__ U|  _  |u | |___ U| |\  |u | |_| |
-   \___/-(_/  \____| |_| |_|  |_____| |_| \_|   \____|
-    _//      _// \\  //   \\  <<   >> ||   \\,-._)(|_
-   (__)     (__)(__)(_") ("_)(__) (__)(_")  (_/(__)__)
+   _                                _                      
+  (_) ___  _ __  _ __  _   _    ___| |__   ___ _ __   __ _ 
+  | |/ _ \| '_ \| '_ \| | | |  / __| '_ \ / _ \ '_ \ / _` |
+  | | (_) | | | | | | | |_| | | (__| | | |  __/ | | | (_| |
+ _/ |\___/|_| |_|_| |_|\__, |  \___|_| |_|\___|_| |_|\__, |
+|__/                   |___/                         |___/ 
 ]]
 
             -- using the mini plugins
@@ -196,10 +195,29 @@ return {
             -- })
 
             -- split and join arguments
-            require('mini.splitjoin').setup({
+            local splitjoin = require('mini.splitjoin')
+            -- https://github.com/echasnovski/mini.nvim/blob/main/doc/mini-splitjoin.txt
+            local gen_hook = splitjoin.gen_hook
+            local smart_add_trailing_separator = function(opt)
+                return function(split_positions)
+                    -- c/cpp does not allow trailing comma, so set to empty char
+                    if vim.bo.filetype == "c" then
+                        opt.sep = ""
+                    end
+                    if vim.bo.filetype == "cpp" then
+                        opt.sep = ""
+                    end
+                    gen_hook.add_trailing_separator(opt)(split_positions)
+                end
+            end
+            local add_comma_curly = smart_add_trailing_separator({})
+            local del_comma_curly = gen_hook.del_trailing_separator({})
+            splitjoin.setup({
                 mappings = {
                     toggle = "K",
-                }
+                },
+                split = { hooks_post = { add_comma_curly } },
+                join  = { hooks_post = { del_comma_curly } },
             })
 
             -- extend textobjects
