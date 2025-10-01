@@ -244,7 +244,7 @@ return {
             branch = false, -- use git branch in session name
             -- open a file from context-menu actually triggered open folder and file
             -- so set to 3 to avoid the case too.
-            need = 3, -- avoid too much sessions for editing single file
+            need = 1, -- avoid too much sessions for editing single file
             path_sep = "+", -- path separator
         },
         config = function(_, opts)
