@@ -53,6 +53,7 @@ vim.opt.wrap=false
 vim.opt.wrapscan=false
 vim.opt.statuscolumn=O.statuscolumn
 vim.opt.sessionoptions="buffers,curdir,folds,tabpages"
+vim.opt.shadafile="NONE"
 
 -- Turn backup off
 vim.opt.backup=false
