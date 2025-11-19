@@ -306,11 +306,11 @@ return {
                 desc = "Telescope Definitions (Gtags)",
             },
             {
-                "<leader>fr", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_references file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>fr", "<cmd>:let @/='\\<'.expand('<cword>').'\\>' | set hlsearch | Telescope gtags_references file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope References (Gtags)",
             },
             {
-                "<leader>fs", "<cmd>:let @/=expand('<cword>') | set hlsearch | Telescope gtags_symbol_usages file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
+                "<leader>fs", "<cmd>:let @/='\\<'.expand('<cword>').'\\>' | set hlsearch | Telescope gtags_symbol_usages file_encoding=" .. O.encoding .. " initial_mode=normal<cr>",
                 desc = "Telescope Symbols (Gtags)",
             },
             {
@@ -337,7 +337,7 @@ return {
                                     os.execute("mv -f GRTAGS \"" .. dbpath .."\"")
                                     os.execute("mv -f GTAGS \"" .. dbpath .."\"")
                                 else
-                                    print(vim.fn.printf("[%s] Error! Tag files are removed.", cmd))
+                                    print(vim.fn.printf("[%s] Error %d! Tag files are removed.", cmd, exit_code))
                                     os.remove(dbpath .. "/GPATH")
                                     os.remove(dbpath .. "/GRTAGS")
                                     os.remove(dbpath .. "/GTAGS")
