@@ -331,16 +331,19 @@ return {
                         cmd,
                         {
                             on_exit = function(jobid, exit_code, evt_type)
+                                os.remove(dbpath .. "/GPATH")
+                                os.remove(dbpath .. "/GRTAGS")
+                                os.remove(dbpath .. "/GTAGS")
                                 if exit_code == 0 then
                                     print(vim.fn.printf("[%s] done.", cmd))
-                                    os.execute("mv -f GPATH \"" .. dbpath .."\"")
-                                    os.execute("mv -f GRTAGS \"" .. dbpath .."\"")
-                                    os.execute("mv -f GTAGS \"" .. dbpath .."\"")
+                                    os.rename("GPATH", dbpath .."/GPATH")
+                                    os.rename("GRTAGS", dbpath .."/GRTAGS")
+                                    os.rename("GTAGS", dbpath .."/GTAGS")
                                 else
+                                    os.remove("GPATH")
+                                    os.remove("GRTAGS")
+                                    os.remove("GTAGS")
                                     print(vim.fn.printf("[%s] Error %d! Tag files are removed.", cmd, exit_code))
-                                    os.remove(dbpath .. "/GPATH")
-                                    os.remove(dbpath .. "/GRTAGS")
-                                    os.remove(dbpath .. "/GTAGS")
                                 end
                             end,
                             on_stdout = function(cid, data, name)
