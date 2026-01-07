@@ -130,6 +130,7 @@ return {
                             width = 0.85,
                             anchor = "N",
                             -- mirror = true,
+                            preview_cutoff = 0, -- always show preview window event at small window size
                         },
                         vertical = {
                             prompt_position = "top",
@@ -137,7 +138,7 @@ return {
                             -- width = 0.8,
                             anchor = "N",
                             mirror = true,
-                            -- preview_cutoff = 0, -- always show preview event at small visible region
+                            preview_cutoff = 0, -- always show preview window event at small window size
                         },
                     },
                     path_display = {
